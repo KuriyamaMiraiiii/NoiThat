@@ -1,6 +1,8 @@
 package online.noithat.be.service;
 
 import online.noithat.be.Entity.Account;
+import online.noithat.be.dto.LoginRequestDTO;
+import online.noithat.be.dto.RegisterRequestDTO;
 import online.noithat.be.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,13 +20,19 @@ public class AuthenticationService {
     PasswordEncoder passwordEncoder;
     @Autowired
     AuthenticationManager authenticationManager;
-    public Account register(Account account){
-        String rawPassword = account.getPassword();
+    public Account register(RegisterRequestDTO registerRequestDTO){
+        Account account = new Account();
+        account.setEmail(registerRequestDTO.getEmail());
+        account.setUsername(registerRequestDTO.getUsername());
+        String rawPassword = registerRequestDTO.getPassword();
         account.setPassword(passwordEncoder.encode(rawPassword));
+        account.setPhone(registerRequestDTO.getPhone());
+        account.setAddress(registerRequestDTO.getAddress());
+        account.setRole(registerRequestDTO.getRole());
         // save to database
         return accountRepository.save(account);
     }
-    public Account login(Account account){
+    public Account login(LoginRequestDTO account){
         Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getUsername(),account.getPassword()));
