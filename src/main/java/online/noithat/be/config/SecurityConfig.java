@@ -1,6 +1,7 @@
 package online.noithat.be.config;
 
 import online.noithat.be.repository.AccountRepository;
+import online.noithat.be.security.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,13 +17,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
 
     @Autowired
     AccountRepository accountRepository;
-
+    @Autowired
+    Filter filter;
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -30,10 +33,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         System.err.println(Customizer.withDefaults());
-        httpSecurity.authorizeHttpRequests(auth ->
+        httpSecurity.cors(Customizer.withDefaults()).authorizeHttpRequests(auth ->
                         auth.requestMatchers("/**").permitAll()
                                 .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults()).csrf(AbstractHttpConfigurer:: disable);
+                .httpBasic(Customizer.withDefaults()).csrf(AbstractHttpConfigurer:: disable).cors(Customizer.withDefaults())
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+
         return httpSecurity.build();
     }
     @Bean
