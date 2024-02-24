@@ -17,8 +17,30 @@ public class ProductCategoryService {
         category.setName(category.getName());
         return productCategoryRepository.save(category);
     }
-    public List<Category> getAllProduct(){
-        List<Category> productCategories = productCategoryRepository.findProductCategoriesByProductCategoryIdNotNull();
+
+
+    public List<Category> getAllCategories(){
+        List<Category> productCategories = productCategoryRepository.findProductCategoriesByIdNotNull();
         return productCategories;
     }
+
+    public Category delete(long id){
+        Category category = productCategoryRepository.findProductCategoryById(id);
+        category.setDeleted(true);
+        return productCategoryRepository.save(category);
+    }
+
+    public Category update(long id, String newName){
+        Category category = productCategoryRepository.findProductCategoryById(id);
+        category.setName(newName);
+        return productCategoryRepository.save(category);
+    }
+
+    public Category add(Category category){
+        return productCategoryRepository.save(category);
+    }
+
+
+
+
 }

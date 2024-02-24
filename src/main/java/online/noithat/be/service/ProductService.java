@@ -21,7 +21,7 @@ public class ProductService {
         ArrayList<Category> categoryList = new ArrayList<>();
 
         for (Long categoryId : createProductRequestDTO.getCategoriesId()){
-            Category category = productCategoryRepository.findProductCategoryByProductCategoryId(categoryId);
+            Category category = productCategoryRepository.findProductCategoryById(categoryId);
             categoryList.add(category);
         }
 
@@ -38,7 +38,7 @@ public class ProductService {
         return products;
     }
     public List<Product> getProductByCategoryId(Long categoryId){
-        Category category = productCategoryRepository.findProductCategoryByProductCategoryId(categoryId);
+        Category category = productCategoryRepository.findProductCategoryById(categoryId);
         List<Product> products= productRepository.findProductsByProductCategoriesContaining(category);
         return products;
     }

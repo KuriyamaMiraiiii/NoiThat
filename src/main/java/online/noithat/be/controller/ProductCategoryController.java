@@ -13,21 +13,26 @@ import java.util.List;
 public class ProductCategoryController {
     @Autowired
     ProductCategoryService productCategoryService;
-    @PostMapping("/productCategory")
-    public ResponseEntity createProductCategory(@RequestBody Category category){
+
+    @PostMapping("/category")
+    public ResponseEntity createProductCategory(@RequestBody Category category) {
         Category createdCategory = productCategoryService.createProductCategory(category);
         return ResponseEntity.ok(createdCategory);
     }
-//
-//    @PutMapping("/productCategory")
-//
-//    @GetMapping("/productCategory")
-    @GetMapping("/productCategory")
+
+    @GetMapping("/categories")
     public ResponseEntity getAllProductCategory() {
-        List<Category> productCategories = productCategoryService.getAllProduct();
+        List<Category> productCategories = productCategoryService.getAllCategories();
         return ResponseEntity.ok(productCategories);
     }
-//    @GetMapping("/productCategory/{id}")
-//
-//    @DeleteMapping("/productCategory/{id}")
+
+    @DeleteMapping("/category/{id}")
+    public ResponseEntity delete(long id) {
+        return ResponseEntity.ok(productCategoryService.delete(id));
+    }
+    @PutMapping("/category/{id}")
+    public ResponseEntity update(long id){
+        return ResponseEntity.ok(update(id));
+    }
 }
+

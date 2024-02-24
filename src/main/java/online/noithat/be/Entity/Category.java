@@ -12,10 +12,11 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long productCategoryId;
+    long id;
     String name;
     @ManyToMany
     List<Product> products;
+    boolean isDeleted = false;
 
 
 }
