@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findProductsByProductIdNotNull();
+    List<Product> findProductsByIdNotNull();
     List<Product> findProductsByProductCategoriesContaining(Category category);
 
-    Product findProductByProductId(Long id);
+    Product findProductById(Long id);
 }

@@ -27,14 +27,14 @@ public class OrderService {
         Quotation order = new Quotation();
         ArrayList<QuotationDetail> quotationDetails = new ArrayList<>();
         for(Long productId : orderRequestDTO.getProductGetId()){
-            Product product = productRepository.findProductByProductId(productId);
+            Product product = productRepository.findProductById(productId);
             QuotationDetail quotationDetail = new QuotationDetail();
             quotationDetail.setProduct(product);
-            quotationDetail.setOrder(order);
+//            quotationDetail.setOrder(order);
             quotationDetails.add(quotationDetail);
         }
         order.setQuotationDetails(quotationDetails);
-        order.setAccount(account);
+//        order.setAccount(account);
         order.setCreated(new Date());
 
         return orderRepository.save(order);

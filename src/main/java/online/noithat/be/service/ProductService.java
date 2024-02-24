@@ -34,7 +34,7 @@ public class ProductService {
     }
 
     public List<Product> getAllProduct(){
-        List<Product> products = productRepository.findProductsByProductIdNotNull();
+        List<Product> products = productRepository.findProductsByIdNotNull();
         return products;
     }
     public List<Product> getProductByCategoryId(Long categoryId){

@@ -17,7 +17,7 @@ public class ProductMaterial {
     String size;
 
 
-    @OneToMany(mappedBy = "productMaterials")
+    @OneToMany(mappedBy = "material")
     @JsonIgnore
     List<ProductDetail> productDetails;
 }

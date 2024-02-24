@@ -17,7 +17,7 @@ public class ProductColor {
     String color;
 
 
-    @OneToMany(mappedBy = "productMaterials")
+    @OneToMany(mappedBy = "color")
     @JsonIgnore
     List<ProductDetail> productColors;
 }

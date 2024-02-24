@@ -18,13 +18,19 @@ public class ProductDetail {
     @JsonIgnore
     List<Resource> resources;
 
-    @ManyToOne
-    List<ProductTemplate> productTemplates;
+    @ManyToMany
+    @JoinTable(
+            name = "template_product-detail",
+            joinColumns = @JoinColumn(name = "product_detail_id"),
+            inverseJoinColumns = @JoinColumn(name = "template_id"))
+    List<ProductTemplate> templates;
 
     @ManyToOne
-    List<ProductMaterial> productMaterials;
+    @JoinColumn(name = "material_id")
+    ProductMaterial material;
 
     @ManyToOne
-    List<ProductColor> productColors;
+    @JoinColumn(name = "color_id")
+    ProductColor color;
 
 }

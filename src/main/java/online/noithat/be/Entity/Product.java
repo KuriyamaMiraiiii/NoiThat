@@ -18,7 +18,7 @@ public class Product {
     float price;
     String img;
 
-    @OneToMany(mappedBy = "resource")
+    @OneToMany(mappedBy = "product")
     @JsonIgnore
     List<Resource> resources;
 

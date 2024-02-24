@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class ProductTemplate {
     long id;
     String name;
 
-    @OneToMany(mappedBy = "productTemplates")
-    @JsonIgnore
+    @ManyToMany(mappedBy = "templates")
+    @JdbcTypeCode(SqlTypes.JSON)
     List<ProductDetail> productDetails;
 }
