@@ -33,10 +33,12 @@ public class Account implements UserDetails {
     Role role;
 
 
-    @OneToMany(mappedBy = "type")
+    @OneToMany(mappedBy = "account")
+            @JsonIgnore
     List<Request> requests;
 
     @OneToMany(mappedBy = "account")
+    @JsonIgnore
     List<Blog> blogs;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

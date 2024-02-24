@@ -13,7 +13,7 @@ public class AuthenticationHandlerException {
     }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> serverError(Exception exception){
-        return  new ResponseEntity<String>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
+        return  new ResponseEntity<String>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(AccountNotFound.class)

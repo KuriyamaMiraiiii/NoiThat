@@ -18,6 +18,7 @@ public class Request {
 
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonIgnore
     Account account;
 
     @Enumerated(EnumType.STRING)
