@@ -15,7 +15,7 @@ public class ProductMaterial {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String size;
-
+    boolean isDeleted = false;
 
     @OneToMany(mappedBy = "material")
     @JsonIgnore

@@ -16,6 +16,8 @@ public class ProductColor {
     long id;
     String color;
 
+    boolean isDeleted = false;
+
 
     @OneToMany(mappedBy = "color")
     @JsonIgnore

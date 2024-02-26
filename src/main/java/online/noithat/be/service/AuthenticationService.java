@@ -53,6 +53,7 @@ public class AuthenticationService {
             return loginResponse;
             //đăng nhập thành công
         }catch (Exception e){
+            e.printStackTrace();
            throw new AccountNotFound("Account not found");
         }
     }

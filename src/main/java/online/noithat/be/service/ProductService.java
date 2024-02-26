@@ -20,16 +20,18 @@ public class ProductService {
     public Product createProduct(CreateProductRequestDTO createProductRequestDTO){
         ArrayList<Category> categoryList = new ArrayList<>();
 
-        for (Long categoryId : createProductRequestDTO.getCategoriesId()){
-            Category category = productCategoryRepository.findProductCategoryById(categoryId);
-            categoryList.add(category);
-        }
+
 
         Product product = new Product();
         product.setProductCategories(categoryList);
         product.setName(createProductRequestDTO.getName());
         product.setPrice(createProductRequestDTO.getPrice());
         product.setImg(createProductRequestDTO.getImg());
+        for (Long categoryId : createProductRequestDTO.getCategoriesId()){
+            Category category = productCategoryRepository.findProductCategoryById(categoryId);
+            category.getProducts().add(product);
+            categoryList.add(category);
+        }
         return productRepository.save(product);
     }
 
@@ -41,5 +43,17 @@ public class ProductService {
         Category category = productCategoryRepository.findProductCategoryById(categoryId);
         List<Product> products= productRepository.findProductsByProductCategoriesContaining(category);
         return products;
+    }
+    public Product update(long id,String newName,Float price, String img){
+        Product product = productRepository.findProductById(id);
+        product.setName(newName);
+        product.setPrice(price);
+        product.setImg(img);
+        return productRepository.save(product);
+    }
+    public Product delete(long id){
+        Product product = productRepository.findProductById(id);
+        product.setDeleted(true);
+        return productRepository.save(product);
     }
 }

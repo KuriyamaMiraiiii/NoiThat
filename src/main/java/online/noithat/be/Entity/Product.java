@@ -21,7 +21,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @JsonIgnore
     List<Resource> resources;
-
+    boolean isDeleted = false;
 
     @ManyToMany
     List<Category> productCategories;

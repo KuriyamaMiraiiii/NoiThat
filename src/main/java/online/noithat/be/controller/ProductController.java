@@ -1,7 +1,9 @@
 package online.noithat.be.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import online.noithat.be.Entity.Product;
 import online.noithat.be.dto.CreateProductRequestDTO;
+import online.noithat.be.dto.request.ProductRequestDTO;
 import online.noithat.be.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
+@SecurityRequirement(name = "api")
 public class ProductController {
     @Autowired
     ProductService productService;
@@ -20,8 +23,12 @@ public class ProductController {
         return ResponseEntity.ok(createdProduct);
     }
 
-//    @PutMapping("/product")
-//
+    @PutMapping("/product/{id}")
+    public ResponseEntity update(@PathVariable long id, @RequestBody ProductRequestDTO productRequestDTO){
+
+        return ResponseEntity.ok(productService.update(id,productRequestDTO.getName(),productRequestDTO.getPrice(), productRequestDTO.getImg()));
+    }
+
     @GetMapping("/product")
     public ResponseEntity getAllProduct(){
         List<Product> products = productService.getAllProduct();
@@ -33,10 +40,10 @@ public class ProductController {
         List<Product> products = productService.getProductByCategoryId(id);
         return ResponseEntity.ok(products);
     }
-//
-//    @DeleteMapping("/product/{id}")
-        public ResponseEntity deleteProductById(@PathVariable long id){
-        return null;
-        }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity delete(@PathVariable long id){
+        return ResponseEntity.ok(productService.delete(id));
+    }
 
 }

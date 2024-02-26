@@ -1,5 +1,6 @@
 package online.noithat.be.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,7 @@ public class Category {
     long id;
     String name;
     @ManyToMany
+    @JsonIgnore
     List<Product> products;
     boolean isDeleted = false;
 
