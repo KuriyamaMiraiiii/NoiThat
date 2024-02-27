@@ -1,13 +1,16 @@
 package online.noithat.be.Entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import online.noithat.be.enums.ResourceType;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Getter
 @Setter
+
 public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,10 +19,17 @@ public class Resource {
     ResourceType type;
     String url;
 
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "blog_id")
+    Blog blog;
+
     @ManyToOne
     @JoinColumn(name = "product_detail_id")
     ProductDetail productDetail;
+
 }
