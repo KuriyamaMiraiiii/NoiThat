@@ -29,6 +29,7 @@ public class BlogService {
             resource.setBlog(blog);
             resources.add(resource);
         }
+        blog.setResources(resources);
         return blogRepository.save(blog);
     }
 

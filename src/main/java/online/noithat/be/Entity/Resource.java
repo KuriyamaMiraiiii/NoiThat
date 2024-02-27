@@ -1,5 +1,6 @@
 package online.noithat.be.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Resource {
 
     @ManyToOne
     @JoinColumn(name = "blog_id")
+    @JsonIgnore
     Blog blog;
 
     @ManyToOne

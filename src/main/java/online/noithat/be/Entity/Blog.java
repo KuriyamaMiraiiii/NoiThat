@@ -19,8 +19,7 @@ public class Blog {
     Date datePost;
     boolean isDeleted = false;
 
-    @OneToMany(mappedBy = "blog")
-    @JsonIgnore
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
     List<Resource> resources;
 
     @ManyToOne
