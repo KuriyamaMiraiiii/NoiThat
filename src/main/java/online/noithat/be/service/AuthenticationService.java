@@ -48,6 +48,7 @@ public class AuthenticationService {
             loginResponse.setId(loginAccount.getId());
             loginResponse.setEmail(loginAccount.getEmail());
             loginResponse.setUsername(loginAccount.getUsername());
+            loginResponse.setRole(loginAccount.getRole());
             loginResponse.setToken(tokenHandler.generateToken(loginAccount));
 
             return loginResponse;

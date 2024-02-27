@@ -16,11 +16,11 @@ public class Product {
     long id;
     String name;
     float price;
-    String img;
 
     @OneToMany(mappedBy = "product")
     @JsonIgnore
     List<Resource> resources;
+
     boolean isDeleted = false;
 
     @ManyToMany

@@ -1,6 +1,9 @@
 package online.noithat.be.dto.response;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
+import online.noithat.be.enums.Role;
 
 @Data
 public class LoginResponse {
@@ -8,36 +11,7 @@ public class LoginResponse {
     String username;
     String email;
     String token;
+    @Enumerated(EnumType.STRING)
+    Role role;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 }

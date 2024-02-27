@@ -24,9 +24,9 @@ public class ProductController {
     }
 
     @PutMapping("/product/{id}")
-    public ResponseEntity update(@PathVariable long id, @RequestBody ProductRequestDTO productRequestDTO){
+    public ResponseEntity update(@PathVariable long id, @RequestBody CreateProductRequestDTO createProductRequestDTO){
 
-        return ResponseEntity.ok(productService.update(id,productRequestDTO.getName(),productRequestDTO.getPrice(), productRequestDTO.getImg()));
+        return ResponseEntity.ok(productService.update(createProductRequestDTO, id));
     }
 
     @GetMapping("/product")

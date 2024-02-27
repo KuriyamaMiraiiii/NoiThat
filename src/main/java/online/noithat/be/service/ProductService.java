@@ -2,7 +2,10 @@ package online.noithat.be.service;
 
 import online.noithat.be.Entity.Product;
 import online.noithat.be.Entity.Category;
+import online.noithat.be.Entity.Resource;
 import online.noithat.be.dto.CreateProductRequestDTO;
+import online.noithat.be.dto.request.ProductRequestDTO;
+import online.noithat.be.dto.request.ResourceDTO;
 import online.noithat.be.repository.ProductCategoryRepository;
 import online.noithat.be.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +29,17 @@ public class ProductService {
         product.setProductCategories(categoryList);
         product.setName(createProductRequestDTO.getName());
         product.setPrice(createProductRequestDTO.getPrice());
-        product.setImg(createProductRequestDTO.getImg());
+        List<Resource> resources = new ArrayList<>();
+        // ResourceDTO => Resource
+        for(ResourceDTO resourceDTO : createProductRequestDTO.getResourceDTOS()){
+            Resource resource = new Resource();
+            resource.setType(resourceDTO.getType());
+            resource.setUrl(resourceDTO.getUrl());
+            resource.setProduct(product);
+            resources.add(resource);
+        }
+        product.setResources(resources);
+
         for (Long categoryId : createProductRequestDTO.getCategoriesId()){
             Category category = productCategoryRepository.findProductCategoryById(categoryId);
             category.getProducts().add(product);
@@ -44,11 +57,20 @@ public class ProductService {
         List<Product> products= productRepository.findProductsByProductCategoriesContaining(category);
         return products;
     }
-    public Product update(long id,String newName,Float price, String img){
+    public Product update(CreateProductRequestDTO createProductRequestDTO, long id){
         Product product = productRepository.findProductById(id);
-        product.setName(newName);
-        product.setPrice(price);
-        product.setImg(img);
+        product.setName(createProductRequestDTO.getName());
+        product.setPrice(createProductRequestDTO.getPrice());
+        List<Resource> resources = new ArrayList<>();
+        // ResourceDTO => Resource
+        for(ResourceDTO resourceDTO : createProductRequestDTO.getResourceDTOS()){
+            Resource resource = new Resource();
+            resource.setType(resourceDTO.getType());
+            resource.setUrl(resourceDTO.getUrl());
+            resource.setProduct(product);
+            resources.add(resource);
+        }
+        product.setResources(resources);
         return productRepository.save(product);
     }
     public Product delete(long id){
