@@ -51,6 +51,15 @@ public class BlogService {
         Blog blog = blogRepository.findBlogById(id);
         blog.setBlogName(blogRequestDTO.getBlogName());
         blog.setDatePost(blogRequestDTO.getDatePost());
+        List<Resource> resources = new ArrayList<>();
+        for (ResourceDTO resourceDTO : blogRequestDTO.getResourceDTO()){
+            Resource resource = new Resource();
+            resource.setType(resourceDTO.getType());
+            resource.setUrl(resourceDTO.getUrl());
+            resource.setBlog(blog);
+            resources.add(resource);
+        }
+        blog.setResources(resources);
         return blogRepository.save(blog);
     }
 
