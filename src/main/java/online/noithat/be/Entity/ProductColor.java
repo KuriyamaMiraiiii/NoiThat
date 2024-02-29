@@ -19,7 +19,7 @@ public class ProductColor {
     boolean isDeleted = false;
 
 
-    @OneToMany(mappedBy = "color")
+    @OneToMany(mappedBy = "color",cascade = CascadeType.ALL)
     @JsonIgnore
     List<ProductDetail> productColors;
 }

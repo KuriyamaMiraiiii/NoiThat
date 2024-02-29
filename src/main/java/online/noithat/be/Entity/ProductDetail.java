@@ -14,7 +14,7 @@ public class ProductDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @OneToMany(mappedBy = "productDetail")
+    @OneToMany(mappedBy = "productDetail",cascade = CascadeType.ALL)
     @JsonIgnore
     List<Resource> resources;
 
@@ -33,4 +33,9 @@ public class ProductDetail {
     @JoinColumn(name = "color_id")
     ProductColor color;
 
+    boolean isDeleted = false;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    Product product;
 }

@@ -33,11 +33,11 @@ public class Account implements UserDetails {
     Role role;
 
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
             @JsonIgnore
     List<Request> requests;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     @JsonIgnore
     List<Blog> blogs;
     @Override

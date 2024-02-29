@@ -18,7 +18,7 @@ public class ProductTemplate {
     long id;
     String name;
 
-    @ManyToMany(mappedBy = "templates")
+    @ManyToMany(mappedBy = "templates",cascade = CascadeType.ALL)
     @JdbcTypeCode(SqlTypes.JSON)
     List<ProductDetail> productDetails;
 }

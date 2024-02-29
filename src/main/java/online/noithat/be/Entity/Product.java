@@ -17,8 +17,7 @@ public class Product {
     String name;
     float price;
 
-    @OneToMany(mappedBy = "product")
-    @JsonIgnore
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     List<Resource> resources;
 
     boolean isDeleted = false;
@@ -28,5 +27,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @JsonIgnore
     List<QuotationDetail> quotationDetails;
+
+    @OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<ProductDetail> productDetails;
 
 }

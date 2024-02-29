@@ -23,9 +23,17 @@ public class Request {
 
     @Enumerated(EnumType.STRING)
     RequestType type;
+    long budget ;
+    String description;
+    String dienTich;
 
-    @OneToMany(mappedBy = "request")
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<Resource> resources;
+
+    @OneToMany(mappedBy = "request",cascade = CascadeType.ALL)
     @JsonIgnore
     List<Quotation> quotations;
 
+    boolean isDeleted = false;
 }

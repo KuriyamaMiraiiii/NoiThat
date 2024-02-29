@@ -17,7 +17,7 @@ public class ProductMaterial {
     String size;
     boolean isDeleted = false;
 
-    @OneToMany(mappedBy = "material")
+    @OneToMany(mappedBy = "material",cascade = CascadeType.ALL)
     @JsonIgnore
     List<ProductDetail> productDetails;
 }
