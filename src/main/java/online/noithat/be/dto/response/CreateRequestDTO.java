@@ -13,9 +13,9 @@ public class CreateRequestDTO {
 
     @Enumerated(EnumType.STRING)
     RequestType type;
-    long bugget;
+    long budget;
     String description;
     String dienTich;
-
     List<ResourceDTO> resourceDTOS;
+    long staffId;
 }

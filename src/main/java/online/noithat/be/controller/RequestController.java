@@ -47,4 +47,10 @@ public class RequestController {
     public ResponseEntity delete(@PathVariable long id) {
         return ResponseEntity.ok(requestService.delete(id));
     }
+
+    @PatchMapping("/receive-request/{requestId}")
+    public ResponseEntity receiveRequest(@PathVariable long requestId) {
+        Request request = requestService.receiveRequest(requestId);
+        return ResponseEntity.ok(request);
+    }
 }

@@ -37,5 +37,6 @@ public class Resource {
 
     @ManyToOne
     @JoinColumn(name = "request_id")
+    @JsonIgnore
     Request request;
 }

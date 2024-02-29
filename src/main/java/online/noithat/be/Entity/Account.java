@@ -37,6 +37,10 @@ public class Account implements UserDetails {
             @JsonIgnore
     List<Request> requests;
 
+    @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<Request> staffRequests;
+
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     @JsonIgnore
     List<Blog> blogs;

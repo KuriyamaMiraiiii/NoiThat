@@ -18,7 +18,6 @@ public class Request {
 
     @ManyToOne
     @JoinColumn(name = "account_id")
-    @JsonIgnore
     Account account;
 
     @Enumerated(EnumType.STRING)
@@ -28,7 +27,7 @@ public class Request {
     String dienTich;
 
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
-    @JsonIgnore
+
     List<Resource> resources;
 
     @OneToMany(mappedBy = "request",cascade = CascadeType.ALL)
@@ -36,4 +35,9 @@ public class Request {
     List<Quotation> quotations;
 
     boolean isDeleted = false;
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    @JsonIgnore
+    Account staff;
 }
