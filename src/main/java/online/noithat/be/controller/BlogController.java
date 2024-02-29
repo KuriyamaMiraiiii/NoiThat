@@ -24,7 +24,7 @@ public class BlogController {
         return ResponseEntity.ok(createdBlog);
     }
 
-    @GetMapping("/blogs")
+    @GetMapping("/blog/{id}")
     public ResponseEntity getAllBlog() {
         List<Blog> blogs = blogService.getAllBlogs();
         return ResponseEntity.ok(blogs);

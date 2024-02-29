@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "orders")
 @Getter
 @Setter
+@Table(name = "orders")
 public class Quotation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,4 @@ public class Quotation {
     List<QuotationDetail> quotationDetails;
     @Enumerated(EnumType.STRING)
     QuotationType type;
-
-
-
 }

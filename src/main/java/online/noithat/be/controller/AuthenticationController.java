@@ -32,10 +32,10 @@ public class AuthenticationController {
         return ResponseEntity.ok(newAccount);
     }
 
-    @PostMapping("/authentication/login-gg")
-    public ResponseEntity logingg(@RequestBody LoginGoogleDTO loginGoogleDTO){
-        LoginResponse  newAccount = authenticationService.logingg(loginGoogleDTO);
-        return ResponseEntity.ok(newAccount);
-    }
+//    @PostMapping("/authentication/login-gg")
+//    public ResponseEntity logingg(@RequestBody LoginGoogleDTO loginGoogleDTO){
+//        LoginResponse  newAccount = authenticationService.logingg(loginGoogleDTO);
+//        return ResponseEntity.ok(newAccount);
+//    }
 
 }

@@ -38,4 +38,7 @@ public class ProductDetail {
     @ManyToOne
     @JoinColumn(name = "product_id")
     Product product;
+
+    @OneToMany(mappedBy = "productDetail", cascade = CascadeType.ALL)
+    List<QuotationDetail> quotationDetails;
 }

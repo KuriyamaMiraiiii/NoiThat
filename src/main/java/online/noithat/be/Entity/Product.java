@@ -24,9 +24,6 @@ public class Product {
 
     @ManyToMany
     List<Category> productCategories;
-    @OneToMany(mappedBy = "product")
-    @JsonIgnore
-    List<QuotationDetail> quotationDetails;
 
     @OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
     @JsonIgnore

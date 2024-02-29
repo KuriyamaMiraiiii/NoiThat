@@ -13,9 +13,8 @@ public class QuotationDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long Id;
     @ManyToOne
-    @JoinColumn(name = "product_id")
-    Product product;
-
+    @JoinColumn(name = "product_detail_id")
+    ProductDetail productDetail;
 
     @ManyToOne
     @JoinColumn(name = "quotation_id")

@@ -20,7 +20,7 @@ public class Blog {
     boolean isDeleted = false;
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-            @JsonIgnore
+    @JsonIgnore
     List<Resource> resources;
 
     @ManyToOne

@@ -1,8 +1,8 @@
 package online.noithat.be.service;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.FirebaseToken;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuthException;
+//import com.google.firebase.auth.FirebaseToken;
 import online.noithat.be.Entity.Account;
 import online.noithat.be.dto.LoginRequestDTO;
 import online.noithat.be.dto.RegisterRequestDTO;
@@ -62,25 +62,25 @@ public class AuthenticationService {
            throw new AccountNotFound("Account not found");
         }
     }
-    public LoginResponse logingg(LoginGoogleDTO loginGoogleDTO) {
-        try {
-            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(loginGoogleDTO.getToken());
-            String email = decodedToken.getEmail();
-            Account account = accountRepository.findAccountByEmail(email);
-            if (account == null) {
-                throw new AccountNotFound("Cannot find by email");
-            }
-            LoginResponse loginResponse = new LoginResponse();
-            loginResponse.setId(account.getId());
-            loginResponse.setUsername(account.getUsername());
-            loginResponse.setToken(tokenHandler.generateToken(account));
-            loginResponse.setRole(account.getRole());
-            return loginResponse;
-        } catch (FirebaseAuthException e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
-        return null;
-    }
+//    public LoginResponse logingg(LoginGoogleDTO loginGoogleDTO) {
+//        try {
+//            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(loginGoogleDTO.getToken());
+//            String email = decodedToken.getEmail();
+//            Account account = accountRepository.findAccountByEmail(email);
+//            if (account == null) {
+//                throw new AccountNotFound("Cannot find by email");
+//            }
+//            LoginResponse loginResponse = new LoginResponse();
+//            loginResponse.setId(account.getId());
+//            loginResponse.setUsername(account.getUsername());
+//            loginResponse.setToken(tokenHandler.generateToken(account));
+//            loginResponse.setRole(account.getRole());
+//            return loginResponse;
+//        } catch (FirebaseAuthException e) {
+//            e.printStackTrace();
+//            System.out.println(e);
+//        }
+//        return null;
+//    }
 
 }
