@@ -3,6 +3,7 @@ package online.noithat.be.service;
 import online.noithat.be.Entity.ProductDetail;
 import online.noithat.be.Entity.Quotation;
 import online.noithat.be.Entity.QuotationDetail;
+import online.noithat.be.dto.request.QuotationDetailRequestDTO;
 import online.noithat.be.repository.ProductDetailRepository;
 import online.noithat.be.repository.QuotationDetailRepository;
 import online.noithat.be.repository.QuotationRepository;
@@ -29,12 +30,13 @@ public class QuotationDetailService {
         return quotationDetail;
     }
 
-    public QuotationDetail createQuotationDetail(QuotationDetail quotationDetail){
-        Quotation quotation = quotationRepository.findQuotationById(quotationDetail.getId());
-        ProductDetail productDetail = productDetailRepository.findProductDetailById(quotationDetail.getId());
-        QuotationDetail quotationDetail1 = new QuotationDetail();
-        quotationDetail1.setQuotation(quotation);
-        quotationDetail1.setProductDetail(productDetail);
-        return quotationDetailRepository.save(quotationDetail);
+    public QuotationDetail createQuotationDetail(QuotationDetailRequestDTO quotationDetailRequestDTO){
+//        for (Long productDetaislId : quotationDetailRequestDTO.getProductDetailsId()){
+//            QuotationDetail quotationDetail = new QuotationDetail();
+//            ProductDetail productDetail = productDetailRepository.findProductDetailById(productDetaislId);
+//            quotationDetail.setProductDetail(productDetail);
+//            quotationDetail.setQuotation(productDetail);
+//            quotationDetails.add(quotationDetail);
+//        }
     }
 }

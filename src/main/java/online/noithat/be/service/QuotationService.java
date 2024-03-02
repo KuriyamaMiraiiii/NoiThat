@@ -6,6 +6,7 @@ import online.noithat.be.Entity.QuotationDetail;
 import online.noithat.be.Entity.Request;
 import online.noithat.be.dto.request.QuotationRequestDTO;
 import online.noithat.be.dto.response.CreateRequestDTO;
+import online.noithat.be.repository.ProductDetailRepository;
 import online.noithat.be.repository.QuotationRepository;
 import online.noithat.be.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class QuotationService {
     QuotationRepository quotationRepository;
     @Autowired
     RequestRepository requestRepository;
+    @Autowired
+    ProductDetailRepository productDetailRepository;
 
     public List<Quotation> getAllQuotation(){
         List<Quotation> quotations = quotationRepository.findQuotationsByIdNotNull();
@@ -38,9 +41,16 @@ public class QuotationService {
     public Quotation createQuotation (QuotationRequestDTO quotationRequestDTO){
         Request request = requestRepository.findRequestById(quotationRequestDTO.getRequestId());
         Quotation quotation = new Quotation();
-        quotation.setCreated(quotationRequestDTO.getCreated());
         quotation.setRequest(request);
         quotation.setType(quotationRequestDTO.getType());
+        List<QuotationDetail> quotationDetails = new ArrayList<>();
+        for (Long productDetaislId : quotationRequestDTO.getProductDetailsId()){
+            QuotationDetail quotationDetail = new QuotationDetail();
+            ProductDetail productDetail = productDetailRepository.findProductDetailById(productDetaislId);
+            quotationDetail.setProductDetail(productDetail);
+            quotationDetail.setQuotation(quotation);
+            quotationDetails.add(quotationDetail);
+        }
 
         return quotationRepository.save(quotation);
     }
@@ -49,7 +59,6 @@ public class QuotationService {
 
         Request request = requestRepository.findRequestById(quotationRequestDTO.getRequestId());
         Quotation quotation = quotationRepository.findQuotationById(id);
-        quotation.setCreated(quotationRequestDTO.getCreated());
         quotation.setRequest(request);
         quotation.setType(quotationRequestDTO.getType());
         return quotationRepository.save(quotation);

@@ -12,9 +12,9 @@ import java.util.List;
 @Data
 public class QuotationRequestDTO {
 
-    Date created;
     Long requestId;
     @Enumerated(EnumType.STRING)
     QuotationType type;
+    List<Long> productDetailsId;
 
 }
