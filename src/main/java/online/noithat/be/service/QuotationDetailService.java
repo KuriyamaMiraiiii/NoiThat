@@ -30,7 +30,7 @@ public class QuotationDetailService {
         return quotationDetail;
     }
 
-    public QuotationDetail createQuotationDetail(QuotationDetailRequestDTO quotationDetailRequestDTO){
+//    public QuotationDetail createQuotationDetail(QuotationDetailRequestDTO quotationDetailRequestDTO){
 //        for (Long productDetaislId : quotationDetailRequestDTO.getProductDetailsId()){
 //            QuotationDetail quotationDetail = new QuotationDetail();
 //            ProductDetail productDetail = productDetailRepository.findProductDetailById(productDetaislId);
@@ -38,5 +38,5 @@ public class QuotationDetailService {
 //            quotationDetail.setQuotation(productDetail);
 //            quotationDetails.add(quotationDetail);
 //        }
-    }
+//    }
 }

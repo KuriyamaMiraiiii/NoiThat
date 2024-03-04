@@ -15,6 +15,6 @@ public class QuotationRequestDTO {
     Long requestId;
     @Enumerated(EnumType.STRING)
     QuotationType type;
-    List<Long> productDetailsId;
+    List<QuotationDetailDTO> quotationDetailDTOS;
 
 }

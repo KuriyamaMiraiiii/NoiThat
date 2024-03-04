@@ -4,6 +4,7 @@ import online.noithat.be.Entity.ProductDetail;
 import online.noithat.be.Entity.Quotation;
 import online.noithat.be.Entity.QuotationDetail;
 import online.noithat.be.Entity.Request;
+import online.noithat.be.dto.request.QuotationDetailDTO;
 import online.noithat.be.dto.request.QuotationRequestDTO;
 import online.noithat.be.dto.response.CreateRequestDTO;
 import online.noithat.be.repository.ProductDetailRepository;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -43,12 +45,15 @@ public class QuotationService {
         Quotation quotation = new Quotation();
         quotation.setRequest(request);
         quotation.setType(quotationRequestDTO.getType());
+        quotation.setCreated(new Date());
         List<QuotationDetail> quotationDetails = new ArrayList<>();
-        for (Long productDetaislId : quotationRequestDTO.getProductDetailsId()){
+        for (QuotationDetailDTO quotationDetailDTO : quotationRequestDTO.getQuotationDetailDTOS()){
             QuotationDetail quotationDetail = new QuotationDetail();
-            ProductDetail productDetail = productDetailRepository.findProductDetailById(productDetaislId);
+            ProductDetail productDetail = productDetailRepository.findProductDetailById(quotationDetailDTO.getProductDetailId());
             quotationDetail.setProductDetail(productDetail);
             quotationDetail.setQuotation(quotation);
+            quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
+            quotationDetail.setPrice(quotationDetailDTO.getPrice());
             quotationDetails.add(quotationDetail);
         }
 

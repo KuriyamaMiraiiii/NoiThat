@@ -21,7 +21,7 @@ public class QuotationDetail {
     @JsonIgnore
     Quotation quotation;
 
-    Float quantity;
+    long quantity;
     Float price;
 
 }
