@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class QuotationDetailRequestDTO {
     long quotationId;
-    float quantity;
+    long quantity;
     float price;
     List<Long> productDetailsId;
     List<QuotationRequestDTO> quotationRequestDTOS;

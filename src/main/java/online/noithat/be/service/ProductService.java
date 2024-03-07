@@ -34,8 +34,9 @@ public class ProductService {
         Product product = new Product();
         product.setProductCategories(categoryList);
         product.setName(createProductRequestDTO.getName());
-        product.setPrice(createProductRequestDTO.getPrice());
+        product.setPricePerUnit(createProductRequestDTO.getPricePerUnit());
         product.setProductColors(createProductRequestDTO.getProductColors());
+        product.setPricePerAmount(createProductRequestDTO.getPricePerAmount());
         List<Resource> resources = new ArrayList<>();
         // ResourceDTO => Resource
         for (ResourceDTO resourceDTO : createProductRequestDTO.getResourceDTOS()) {
@@ -69,7 +70,9 @@ public class ProductService {
     public Product update(CreateProductRequestDTO createProductRequestDTO, long id) {
         Product product = productRepository.findProductById(id);
         product.setName(createProductRequestDTO.getName());
-        product.setPrice(createProductRequestDTO.getPrice());
+        product.setPricePerUnit(createProductRequestDTO.getPricePerUnit());
+        product.setProductColors(createProductRequestDTO.getProductColors());
+        product.setPricePerAmount(createProductRequestDTO.getPricePerAmount());
         List<Resource> resources = new ArrayList<>();
         // ResourceDTO => Resource
         for (ResourceDTO resourceDTO : createProductRequestDTO.getResourceDTOS()) {

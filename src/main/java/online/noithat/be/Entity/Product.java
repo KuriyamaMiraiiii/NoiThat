@@ -16,7 +16,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String name;
-    float price = 0;
     Unit unit;
 
     float pricePerUnit;

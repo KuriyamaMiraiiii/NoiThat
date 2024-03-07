@@ -19,9 +19,9 @@ public class ProductColorController {
     @Autowired
     ProductColorService productColorService;
 
-    @PostMapping("/productColor")
-    public ResponseEntity createProductColor(@RequestBody ProductColor color) {
-        ProductColor createdProductColor = productColorService.createProductColor(color);
+    @PostMapping("/productColor/{id}")
+    public ResponseEntity createProductColor(@RequestBody ProductColorRequestDTO productColorRequestDTO, @PathVariable long id) {
+        ProductColor createdProductColor = productColorService.createProductColor(productColorRequestDTO,id);
         return ResponseEntity.ok(createdProductColor);
     }
 
