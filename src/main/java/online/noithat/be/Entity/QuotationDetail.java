@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import online.noithat.be.enums.Unit;
 
 @Entity
 @Getter
@@ -23,5 +24,12 @@ public class QuotationDetail {
 
     long quantity;
     Float price;
+
+    float length;
+    float width;
+    float weight;
+    Unit unit;
+    float pricePerUnit;
+    float total;
 
 }

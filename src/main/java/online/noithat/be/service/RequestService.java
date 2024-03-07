@@ -1,8 +1,6 @@
 package online.noithat.be.service;
 
-import online.noithat.be.Entity.Account;
-import online.noithat.be.Entity.Request;
-import online.noithat.be.Entity.Resource;
+import online.noithat.be.Entity.*;
 import online.noithat.be.dto.request.ResourceDTO;
 import online.noithat.be.dto.response.CreateRequestDTO;
 import online.noithat.be.repository.AccountRepository;
@@ -90,5 +88,10 @@ public class RequestService {
         request.setStaff(accountUtils.getCurrentAccount());
         return requestRepository.save(request);
 
+    }
+
+    public List<Request> getRequestByAccountId(){
+        List<Request> requests= requestRepository.findRequestsByAccount(accountUtils.getCurrentAccount());
+        return requests;
     }
 }

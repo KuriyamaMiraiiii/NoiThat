@@ -1,6 +1,7 @@
 package online.noithat.be.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import online.noithat.be.Entity.Product;
 import online.noithat.be.Entity.ProductDetail;
 import online.noithat.be.Entity.Request;
 import online.noithat.be.dto.response.CreateProductDetailResponseDTO;
@@ -52,5 +53,11 @@ public class RequestController {
     public ResponseEntity receiveRequest(@PathVariable long requestId) {
         Request request = requestService.receiveRequest(requestId);
         return ResponseEntity.ok(request);
+    }
+
+    @GetMapping("/request-customer")
+    public ResponseEntity getRequestByaccountId() {
+        List<Request> requests = requestService.getRequestByAccountId();
+        return ResponseEntity.ok(requests);
     }
 }

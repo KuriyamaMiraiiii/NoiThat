@@ -14,9 +14,10 @@ public class ProductDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @OneToMany(mappedBy = "productDetail",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "productDetail", cascade = CascadeType.ALL)
     @JsonIgnore
     List<Resource> resources;
+    float price;
 
     @ManyToMany
     @JoinTable(
@@ -37,8 +38,10 @@ public class ProductDetail {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     Product product;
 
     @OneToMany(mappedBy = "productDetail", cascade = CascadeType.ALL)
+    @JsonIgnore
     List<QuotationDetail> quotationDetails;
 }

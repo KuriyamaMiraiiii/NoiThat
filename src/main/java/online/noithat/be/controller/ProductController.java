@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import online.noithat.be.Entity.Product;
 import online.noithat.be.dto.CreateProductRequestDTO;
 import online.noithat.be.dto.request.ProductRequestDTO;
+import online.noithat.be.dto.response.ProductResponseDTO;
 import online.noithat.be.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +45,11 @@ public class ProductController {
     @DeleteMapping("/product/{id}")
     public ResponseEntity delete(@PathVariable long id){
         return ResponseEntity.ok(productService.delete(id));
+    }
+
+    @GetMapping("/product-productResponseDTO")
+    public ResponseEntity getProductResponseDTO(){
+        List<ProductResponseDTO> list = productService.getProductResponseDTOS();
+        return ResponseEntity.ok(list);
     }
 }

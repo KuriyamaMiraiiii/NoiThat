@@ -54,8 +54,14 @@ public class QuotationService {
             quotationDetail.setQuotation(quotation);
             quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
             quotationDetail.setPrice(quotationDetailDTO.getPrice());
+            quotationDetail.setLength(quotationDetailDTO.getLength());
+            quotationDetail.setWidth(quotationDetailDTO.getWidth());
+            quotationDetail.setPricePerUnit(quotationDetailDTO.getPricePerUnit());
+            quotationDetail.setTotal(quotationDetailDTO.getTotal());
+
             quotationDetails.add(quotationDetail);
         }
+        quotation.setQuotationDetails(quotationDetails);
 
         return quotationRepository.save(quotation);
     }

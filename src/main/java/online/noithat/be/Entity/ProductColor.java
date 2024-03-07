@@ -22,4 +22,9 @@ public class ProductColor {
     @OneToMany(mappedBy = "color",cascade = CascadeType.ALL)
     @JsonIgnore
     List<ProductDetail> productColors;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+            @JsonIgnore
+    Product product;
 }

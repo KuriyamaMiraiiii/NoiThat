@@ -17,4 +17,6 @@ public class CreateProductDetailResponseDTO {
     List<ResourceDTO> resourceDTOS;
 
     long productId;
+
+    float price;
 }

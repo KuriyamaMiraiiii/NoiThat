@@ -41,6 +41,8 @@ public class ProductDetailService {
         Product product = productRepository.findProductById(createProductDetailResponseDTO.getProductId());
         productDetail.setProduct(product);
 
+        productDetail.setPrice(createProductDetailResponseDTO.getPrice());
+
         List<Resource> resources = new ArrayList<>();
         for(ResourceDTO resourceDTO : createProductDetailResponseDTO.getResourceDTOS()){
             Resource resource = new Resource();

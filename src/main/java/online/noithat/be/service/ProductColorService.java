@@ -1,8 +1,10 @@
 package online.noithat.be.service;
 
 import online.noithat.be.Entity.Category;
+import online.noithat.be.Entity.Product;
 import online.noithat.be.Entity.ProductColor;
 import online.noithat.be.repository.ProductColorRepository;
+import online.noithat.be.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,14 @@ import java.util.List;
 public class ProductColorService {
     @Autowired
     ProductColorRepository productColorRepository;
+    @Autowired
+    ProductRepository productRepository;
     public ProductColor createProductColor(ProductColor color){
+        Product product = new Product();
+        product = productRepository.findProductById(product.getId());
 
-//        product.setProductId(product.getProductId());
         color.setColor(color.getColor());
+        color.setProduct(product);
         return productColorRepository.save(color);
     }
 

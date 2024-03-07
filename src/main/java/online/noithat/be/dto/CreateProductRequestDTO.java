@@ -1,6 +1,7 @@
 package online.noithat.be.dto;
 
 import lombok.Data;
+import online.noithat.be.Entity.ProductColor;
 import online.noithat.be.Entity.Resource;
 import online.noithat.be.dto.request.ResourceDTO;
 
@@ -13,4 +14,6 @@ public class CreateProductRequestDTO {
     float price;
 
     List<ResourceDTO> resourceDTOS;
+
+    List<ProductColor> productColors;
 }
