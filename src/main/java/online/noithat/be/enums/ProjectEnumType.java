@@ -1,6 +1,6 @@
 package online.noithat.be.enums;
 
-public enum ProjectType {
+public enum ProjectEnumType {
     Bedroom,
     Livingroom,
     Kitchen,

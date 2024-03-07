@@ -20,5 +20,11 @@ public class Category {
     List<Product> products;
     boolean isDeleted = false;
 
+    @ManyToMany
+    @JoinTable(
+            name = "projectType",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_type_id"))
+    List<ProjectType> projectTypes;
 
 }

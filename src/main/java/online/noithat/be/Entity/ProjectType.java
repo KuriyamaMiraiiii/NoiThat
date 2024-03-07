@@ -3,6 +3,7 @@ package online.noithat.be.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import online.noithat.be.enums.ProjectEnumType;
 import online.noithat.be.enums.ResourceType;
 
 import java.util.List;
@@ -16,13 +17,9 @@ public class ProjectType {
     String name;
     boolean isDeleted = false;
     @Enumerated(EnumType.STRING)
-    ResourceType resourceType;
+    ProjectEnumType type;
 
-    @ManyToMany
-    @JoinTable(
-            name = "category",
-            joinColumns = @JoinColumn(name = "project_type_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @ManyToMany(mappedBy = "projectTypes",cascade = CascadeType.ALL)
     List<Category> categoryList;
 
     @ManyToMany

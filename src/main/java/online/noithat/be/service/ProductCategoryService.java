@@ -1,10 +1,14 @@
 package online.noithat.be.service;
 
 import online.noithat.be.Entity.Category;
+import online.noithat.be.Entity.ProjectType;
+import online.noithat.be.dto.request.CategoryRequestDTO;
+import online.noithat.be.dto.request.ProjectTypeRequestDTO;
 import online.noithat.be.repository.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,6 +19,7 @@ public class ProductCategoryService {
 
 //        product.setProductId(product.getProductId());
         category.setName(category.getName());
+
         return productCategoryRepository.save(category);
     }
 

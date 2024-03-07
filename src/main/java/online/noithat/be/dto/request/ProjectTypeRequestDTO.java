@@ -1,10 +1,15 @@
 package online.noithat.be.dto.request;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
+import online.noithat.be.enums.ProjectEnumType;
 
 import java.util.List;
 @Data
 public class ProjectTypeRequestDTO {
-    String type;
+    String name;
+    @Enumerated(EnumType.STRING)
+    ProjectEnumType type;
     List<ResourceDTO> resourceDTOList;
 }

@@ -23,7 +23,6 @@ public class QuotationDetail {
     Quotation quotation;
 
     long quantity;
-    Float price;
 
     float length;
     float width;
