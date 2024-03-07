@@ -39,4 +39,9 @@ public class Resource {
     @JoinColumn(name = "request_id")
     @JsonIgnore
     Request request;
+
+    @ManyToOne
+    @JoinColumn(name = "project_type_id")
+    @JsonIgnore
+    ProjectType projectType;
 }

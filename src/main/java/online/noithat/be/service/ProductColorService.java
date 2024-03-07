@@ -20,8 +20,7 @@ public class ProductColorService {
     public ProductColor createProductColor(ProductColorRequestDTO productColorRequestDTO, long id){
         ProductColor color = new ProductColor();
         Product product = productRepository.findProductById(id);
-
-        color.setColor(color.getColor());
+        color.setColor(productColorRequestDTO.getColor());
         color.setProduct(product);
         return productColorRepository.save(color);
     }

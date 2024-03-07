@@ -21,7 +21,7 @@ public class ProductDetail {
 
     @ManyToMany
     @JoinTable(
-            name = "template_product-detail",
+            name = "template_product_detail",
             joinColumns = @JoinColumn(name = "product_detail_id"),
             inverseJoinColumns = @JoinColumn(name = "template_id"))
     List<ProductTemplate> templates;
