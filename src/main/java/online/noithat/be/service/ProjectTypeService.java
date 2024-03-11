@@ -1,5 +1,6 @@
 package online.noithat.be.service;
 
+import online.noithat.be.Entity.Category;
 import online.noithat.be.Entity.ProjectType;
 import online.noithat.be.Entity.Resource;
 import online.noithat.be.dto.request.ProjectTypeRequestDTO;
@@ -28,6 +29,12 @@ public class ProjectTypeService {
             resource.setProjectType(projectType);
             resources.add(resource);
         }
+        List<Category> categoryList = new ArrayList<>();
+        for(Category category : projectTypeRequestDTO.getCategoryList()){
+            category.setName(category.getName());
+            categoryList.add(category);
+        }
+        projectType.setCategoryList(categoryList);
         projectType.setResources((resources));
         return projectTypeRepository.save(projectType);
     }
@@ -55,6 +62,12 @@ public class ProjectTypeService {
             resource.setProjectType(projectType);
             resources.add(resource);
         }
+        List<Category> categoryList = new ArrayList<>();
+        for(Category category : projectTypeRequestDTO.getCategoryList()){
+            category.setName(category.getName());
+            categoryList.add(category);
+        }
+        projectType.setCategoryList(categoryList);
         projectType.setResources(resources);
         return projectTypeRepository.save(projectType);
     }

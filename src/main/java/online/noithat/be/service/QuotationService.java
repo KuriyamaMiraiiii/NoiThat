@@ -74,6 +74,9 @@ public class QuotationService {
         return quotationRepository.save(quotation);
     }
 
-
+    public List<Quotation> getQuotationByRequestId(long id){
+        Request request = requestRepository.findRequestById(id);
+        return request.getQuotations();
+    }
 
 }

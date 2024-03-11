@@ -39,4 +39,9 @@ public class QuotationController {
         Quotation quotation = quotationService.getQuotationById(id);
         return ResponseEntity.ok(quotation);
     }
+    @GetMapping("/quotation-request/{id}")
+    public  ResponseEntity getQuotationByRequestId(@PathVariable long id){
+        List<Quotation> quotations = quotationService.getQuotationByRequestId(id);
+        return ResponseEntity.ok(quotations);
+    }
 }

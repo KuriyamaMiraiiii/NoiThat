@@ -3,7 +3,7 @@ package online.noithat.be.controller;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import online.noithat.be.Entity.Product;
 import online.noithat.be.dto.CreateProductRequestDTO;
-import online.noithat.be.dto.request.ProductRequestDTO;
+
 import online.noithat.be.dto.response.ProductResponseDTO;
 import online.noithat.be.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

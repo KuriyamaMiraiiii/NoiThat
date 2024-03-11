@@ -5,7 +5,7 @@ import online.noithat.be.Entity.Category;
 import online.noithat.be.Entity.ProductDetail;
 import online.noithat.be.Entity.Resource;
 import online.noithat.be.dto.CreateProductRequestDTO;
-import online.noithat.be.dto.request.ProductRequestDTO;
+
 import online.noithat.be.dto.request.ResourceDTO;
 import online.noithat.be.dto.response.ProductResponseDTO;
 import online.noithat.be.repository.ProductCategoryRepository;
