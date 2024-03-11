@@ -53,6 +53,7 @@ public class QuotationService {
             quotationDetail.setProductDetail(productDetail);
             quotationDetail.setQuotation(quotation);
             quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
+            quotationDetail.setHeight(quotationDetail.getHeight());
             quotationDetail.setLength(quotationDetailDTO.getLength());
             quotationDetail.setWidth(quotationDetailDTO.getWidth());
             quotationDetail.setPricePerUnit(quotationDetailDTO.getPricePerUnit());

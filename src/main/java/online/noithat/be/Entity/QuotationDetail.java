@@ -27,6 +27,7 @@ public class QuotationDetail {
     float length;
     float width;
     float weight;
+    float height;
     Unit unit;
     float pricePerUnit;
     float total;

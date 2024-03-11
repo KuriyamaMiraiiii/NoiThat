@@ -9,7 +9,7 @@ public class QuotationDetailDTO {
     long productId;
     long quantity;
 
-
+    float height;
     float length;
     float width;
     float weight;
