@@ -16,6 +16,9 @@ public class CreateProductRequestDTO {
 
     float pricePerUnit;
     float pricePerAmount;
+    float length = 0;
+    float width = 0;
+    float height = 0;
 
     List<ResourceDTO> resourceDTOS;
 

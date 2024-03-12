@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import online.noithat.be.enums.Unit;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -18,6 +20,10 @@ public class QuotationDetail {
     ProductDetail productDetail;
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
+    Product product;
+
+    @ManyToOne
     @JoinColumn(name = "quotation_id")
     @JsonIgnore
     Quotation quotation;
@@ -27,6 +33,8 @@ public class QuotationDetail {
     float length;
     float width;
     float weight;
+    @Column(nullable = true)
+    float height;
     Unit unit;
     float pricePerUnit;
     float total;

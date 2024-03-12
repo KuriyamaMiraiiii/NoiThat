@@ -1,13 +1,11 @@
 package online.noithat.be.service;
 
-import online.noithat.be.Entity.ProductDetail;
-import online.noithat.be.Entity.Quotation;
-import online.noithat.be.Entity.QuotationDetail;
-import online.noithat.be.Entity.Request;
+import online.noithat.be.Entity.*;
 import online.noithat.be.dto.request.QuotationDetailDTO;
 import online.noithat.be.dto.request.QuotationRequestDTO;
 import online.noithat.be.dto.response.CreateRequestDTO;
 import online.noithat.be.repository.ProductDetailRepository;
+import online.noithat.be.repository.ProductRepository;
 import online.noithat.be.repository.QuotationRepository;
 import online.noithat.be.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,9 @@ public class QuotationService {
     RequestRepository requestRepository;
     @Autowired
     ProductDetailRepository productDetailRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     public List<Quotation> getAllQuotation(){
         List<Quotation> quotations = quotationRepository.findQuotationsByIdNotNull();
@@ -57,9 +58,16 @@ public class QuotationService {
             quotationDetail.setWidth(quotationDetailDTO.getWidth());
             quotationDetail.setPricePerUnit(quotationDetailDTO.getPricePerUnit());
             quotationDetail.setTotal(quotationDetailDTO.getTotal());
+            quotationDetail.setUnit(quotationDetailDTO.getUnit());
+            if(quotationDetailDTO.getProductId() != 0){
+                Product product = productRepository.findProductById(quotationDetailDTO.getProductId());
+                product.getQuotationDetails().add(quotationDetail);
+                quotationDetail.setProduct(product);
+            }
 
             quotationDetails.add(quotationDetail);
         }
+
         quotation.setQuotationDetails(quotationDetails);
 
         return quotationRepository.save(quotation);

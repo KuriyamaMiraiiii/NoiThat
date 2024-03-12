@@ -34,9 +34,14 @@ public class ProductService {
         Product product = new Product();
         product.setProductCategories(categoryList);
         product.setName(createProductRequestDTO.getName());
+//        product.setPricePerUnit(createProductRequestDTO.getPricePerUnit());
+//        product.setProductColors(createProductRequestDTO.getProductColors());
+//        product.setPricePerAmount(createProductRequestDTO.getPricePerAmount());
         product.setPricePerUnit(createProductRequestDTO.getPricePerUnit());
-        product.setProductColors(createProductRequestDTO.getProductColors());
-        product.setPricePerAmount(createProductRequestDTO.getPricePerAmount());
+        product.setUnit(createProductRequestDTO.getUnit());
+        product.setLength(createProductRequestDTO.getLength());
+        product.setWidth(createProductRequestDTO.getWidth());
+        product.setHeight(createProductRequestDTO.getHeight());
         List<Resource> resources = new ArrayList<>();
         // ResourceDTO => Resource
         for (ResourceDTO resourceDTO : createProductRequestDTO.getResourceDTOS()) {
@@ -48,10 +53,14 @@ public class ProductService {
         }
         product.setResources(resources);
 
-        for (Long categoryId : createProductRequestDTO.getCategoriesId()) {
-            Category category = productCategoryRepository.findProductCategoryById(categoryId);
-            category.getProducts().add(product);
-            categoryList.add(category);
+        try{
+            for (Long categoryId : createProductRequestDTO.getCategoriesId()) {
+                Category category = productCategoryRepository.findProductCategoryById(categoryId);
+                category.getProducts().add(product);
+                categoryList.add(category);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return productRepository.save(product);
     }
@@ -98,9 +107,11 @@ public class ProductService {
 
         for(Product product: products){
             ProductResponseDTO productResponseDTO = new ProductResponseDTO();
+            productResponseDTO.setProductId(product.getId());
             productResponseDTO.setName(product.getName());
-            productResponseDTO.setLength(0);
-            productResponseDTO.setWidth(0);
+            productResponseDTO.setLength(product.getLength());
+            productResponseDTO.setWidth(product.getWidth());
+            productResponseDTO.setHeight(product.getHeight());
             productResponseDTO.setWeight(0);
             productResponseDTO.setUnit(product.getUnit());
 

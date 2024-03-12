@@ -25,6 +25,12 @@ public class Product {
     List<Resource> resources;
 
     boolean isDeleted = false;
+    @Column(nullable = true)
+    float length = 0;
+    @Column(nullable = true)
+    float width = 0;
+    @Column(nullable = true)
+    float height = 0;
 
     @ManyToMany
     List<Category> productCategories;
@@ -34,5 +40,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
     List<ProductColor> productColors;
+
+    @OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<QuotationDetail> quotationDetails;
 
 }
