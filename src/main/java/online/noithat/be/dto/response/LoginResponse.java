@@ -4,6 +4,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Data;
 import online.noithat.be.enums.Role;
+import online.noithat.be.enums.Status;
 
 @Data
 public class LoginResponse {
@@ -13,5 +14,8 @@ public class LoginResponse {
     String token;
     @Enumerated(EnumType.STRING)
     Role role;
+
+    @Enumerated(EnumType.STRING)
+    Status status;
 
 }

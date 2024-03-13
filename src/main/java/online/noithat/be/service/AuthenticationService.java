@@ -18,6 +18,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthenticationService {
 
@@ -81,6 +83,23 @@ public class AuthenticationService {
 //            System.out.println(e);
 //        }
 //        return null;
+//    }
+    public List<Account> getAllAccount(){
+        List<Account> accounts = accountRepository.findAccountsByIdNotNull();
+        return accounts;
+    }
+
+//    public Account registerStaff(RegisterRequestDTO registerRequestDTO){
+//        Account account = new Account();
+//        account.setEmail(registerRequestDTO.getEmail());
+//        account.setUsername(registerRequestDTO.getUsername());
+//        String rawPassword = registerRequestDTO.getPassword();
+//        account.setPassword(passwordEncoder.encode(rawPassword));
+//        account.setPhone(registerRequestDTO.getPhone());
+//        account.setAddress(registerRequestDTO.getAddress());
+//        account.setRole(registerRequestDTO.getRole());
+//        // save to database
+//        return accountRepository.save(account);
 //    }
 
 }
