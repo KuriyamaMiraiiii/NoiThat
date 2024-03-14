@@ -1,7 +1,10 @@
 package online.noithat.be.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.servlet.http.HttpServletResponse;
 import online.noithat.be.Entity.Quotation;
+import online.noithat.be.dto.request.QuotationAcceptDTO;
+import online.noithat.be.dto.request.QuotationRejectDTO;
 import online.noithat.be.dto.request.QuotationRequestDTO;
 import online.noithat.be.service.QuotationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +46,34 @@ public class QuotationController {
     public  ResponseEntity getQuotationByRequestId(@PathVariable long id){
         List<Quotation> quotations = quotationService.getQuotationByRequestId(id);
         return ResponseEntity.ok(quotations);
+    }
+
+    @PatchMapping("/accept-quotation")
+    public ResponseEntity acceptQuotation(@RequestBody QuotationAcceptDTO quotationAcceptDTO){
+        return ResponseEntity.ok(quotationService.acceptQuotation(quotationAcceptDTO));
+    }
+
+    @PatchMapping("/reject-quotation")
+    public ResponseEntity rejectQuotation(@RequestBody QuotationRejectDTO quotationRejectDTO){
+        return ResponseEntity.ok(quotationService.rejectQuotation(quotationRejectDTO));
+    }
+
+    @GetMapping("/export-quotation/{quotationId}")
+    public void exportQuotation(@PathVariable long quotationId, HttpServletResponse response){
+        try{
+            quotationService.exportToExcel(quotationId, response);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @PostMapping("buy-available")
+    public ResponseEntity buyAvailable(@RequestBody QuotationRequestDTO quotationRequestDTO){
+        return ResponseEntity.ok(quotationService.buyAvailable(quotationRequestDTO));
+    }
+
+    @GetMapping("history-buy-available")
+    public ResponseEntity getHistory(){
+        return ResponseEntity.ok(quotationService.getAvailableHistory());
     }
 }

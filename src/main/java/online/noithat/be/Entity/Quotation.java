@@ -23,4 +23,6 @@ public class Quotation {
     List<QuotationDetail> quotationDetails;
     @Enumerated(EnumType.STRING)
     QuotationType type;
+
+    String reasonReject;
 }

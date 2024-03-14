@@ -29,7 +29,7 @@ public class Resource {
     @ManyToOne
     @JoinColumn(name = "blog_id")
     @JsonIgnore
-    Blog blog;
+    BlogSection blogSection;
 
     @ManyToOne
     @JoinColumn(name = "product_detail_id")

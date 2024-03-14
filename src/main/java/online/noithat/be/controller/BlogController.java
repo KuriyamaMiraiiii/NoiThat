@@ -25,7 +25,13 @@ public class BlogController {
     }
 
     @GetMapping("/blog/{id}")
-    public ResponseEntity getAllBlog() {
+    public ResponseEntity getAllBlog(@PathVariable long id) {
+        Blog blog = blogService.getBlogDetail(id);
+        return ResponseEntity.ok(blog);
+    }
+
+    @GetMapping("/blog")
+    public ResponseEntity getAllBlog2() {
         List<Blog> blogs = blogService.getAllBlogs();
         return ResponseEntity.ok(blogs);
     }
@@ -37,5 +43,10 @@ public class BlogController {
     @PutMapping("/blog/{id}")
     public ResponseEntity update(@PathVariable long id, @RequestBody BlogRequestDTO blogRequestDTO){
         return ResponseEntity.ok(blogService.update(id,blogRequestDTO));
+    }
+
+    @PatchMapping("/active-blog/{id}")
+    public ResponseEntity activeBlog(@PathVariable long id){
+        return ResponseEntity.ok(blogService.activeBlog(id));
     }
 }
