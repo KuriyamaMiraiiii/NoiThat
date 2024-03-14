@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import online.noithat.be.enums.Role;
+import online.noithat.be.enums.Status;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -28,6 +29,10 @@ public class Account implements UserDetails {
     String email;
     String phone;
     String address;
+
+    @Column(nullable = true)
+    @Enumerated(EnumType.STRING)
+    Status status;
 
     @Enumerated(EnumType.STRING)
     Role role;
