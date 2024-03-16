@@ -19,6 +19,16 @@ public class ProductDetail {
     List<Resource> resources;
     float price;
 
+    @Column(nullable = true)
+    float length;
+    @Column(nullable = true)
+    float width;
+    @Column(nullable = true)
+    float weight;
+    @Column(nullable = true)
+    float height;
+
+    String name;
     @ManyToMany
     @JoinTable(
             name = "template_product_detail",

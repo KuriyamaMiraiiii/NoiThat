@@ -117,7 +117,9 @@ public class ProductService {
 
             productResponseDTO.setPricePerUnit(product.getPricePerUnit());
             productResponseDTO.setTotal(0);
-            productResponseDTO.setImage(product.getResources().get(0).getUrl());
+            if(product.getResources().size() > 0){
+                productResponseDTO.setImage(product.getResources().get(0).getUrl());
+            }
             list.add(productResponseDTO);
         }
 

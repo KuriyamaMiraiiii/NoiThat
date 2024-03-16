@@ -33,11 +33,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(newAccount);
     }
 
-//    @PostMapping("/authentication/login-gg")
-//    public ResponseEntity logingg(@RequestBody LoginGoogleDTO loginGoogleDTO){
-//        LoginResponse  newAccount = authenticationService.logingg(loginGoogleDTO);
-//        return ResponseEntity.ok(newAccount);
-//    }
+    @PostMapping("/authentication/login-gg")
+    public ResponseEntity logingg(@RequestBody LoginGoogleDTO loginGoogleDTO){
+        LoginResponse  newAccount = authenticationService.logingg(loginGoogleDTO);
+        return ResponseEntity.ok(newAccount);
+    }
 
     @GetMapping("/authentication/account")
     public ResponseEntity getAllAccount(){
@@ -45,4 +45,14 @@ public class AuthenticationController {
         return ResponseEntity.ok(accounts);
     }
 
+    @PostMapping("/authentication/register-staff")
+    public ResponseEntity registerStaff(@RequestBody RegisterRequestDTO registerRequestDTO){
+        Account newAccount = authenticationService.registerStaff(registerRequestDTO);
+        return ResponseEntity.ok(newAccount);
+    }
+
+    @DeleteMapping("/authentication/delete-account/{id}")
+    public ResponseEntity delete(@PathVariable long id) {
+        return ResponseEntity.ok(authenticationService.delete(id));
+    }
 }

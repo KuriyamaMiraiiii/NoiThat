@@ -53,4 +53,10 @@ public class ProductDetailController {
 //        List<ProductDetail> productDetails = productDetailService.getProductByProductId(id);
 //        return ResponseEntity.ok(productDetails);
 //    }
+
+    @GetMapping("/productDetail-productId/{id}")
+    public ResponseEntity getProductDetailByProductId(@PathVariable long id){
+        List<ProductDetail> productDetails = productDetailService.getProductDetailByProductId(id);
+        return ResponseEntity.ok(productDetails);
+    }
 }

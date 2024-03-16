@@ -14,7 +14,7 @@ public class ProjectType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String name;
+
     boolean isDeleted = false;
     @Enumerated(EnumType.STRING)
     ProjectEnumType type;

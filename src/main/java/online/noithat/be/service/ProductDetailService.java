@@ -41,8 +41,13 @@ public class ProductDetailService {
         Product product = productRepository.findProductById(createProductDetailResponseDTO.getProductId());
         productDetail.setProduct(product);
 
-        productDetail.setPrice(createProductDetailResponseDTO.getPrice());
 
+        productDetail.setHeight(createProductDetailResponseDTO.getHeight());
+        productDetail.setLength(createProductDetailResponseDTO.getLength());
+        productDetail.setWidth(createProductDetailResponseDTO.getWidth());
+        productDetail.setWeight(createProductDetailResponseDTO.getWeight());
+        productDetail.setPrice(createProductDetailResponseDTO.getPrice());
+        productDetail.setName(createProductDetailResponseDTO.getName());
         List<Resource> resources = new ArrayList<>();
         for(ResourceDTO resourceDTO : createProductDetailResponseDTO.getResourceDTOS()){
             Resource resource = new Resource();
@@ -67,11 +72,14 @@ public class ProductDetailService {
         return productDetail;
     }
 
-//    public List<ProductDetail> getProductByProductId(Long productId){
-//        Product product = productRepository.findProductById(productId);
-//        List<ProductDetail> productDetails= productDetailRepository.findProductDetailsByProductContaining(product);
-//        return productDetails;
-//    }
+    public List<ProductDetail> getProductDetailByProductId(long id){
+        Product product = productRepository.findProductById(id);
+        List<ProductDetail> productDetails = productDetailRepository.findProductDetailsByProduct(product);
+        
+
+        return productDetails;
+    }
+
 
 
     public ProductDetail delete(long id){
@@ -91,6 +99,13 @@ public class ProductDetailService {
 
         Product product = productRepository.findProductById(createProductDetailResponseDTO.getProductId());
         productDetail.setProduct(product);
+
+        productDetail.setHeight(createProductDetailResponseDTO.getHeight());
+        productDetail.setLength(createProductDetailResponseDTO.getLength());
+        productDetail.setWidth(createProductDetailResponseDTO.getWidth());
+        productDetail.setWeight(createProductDetailResponseDTO.getWeight());
+        productDetail.setPrice(createProductDetailResponseDTO.getPrice());
+        productDetail.setName(createProductDetailResponseDTO.getName());
 
 
         List<Resource> resources = new ArrayList<>();

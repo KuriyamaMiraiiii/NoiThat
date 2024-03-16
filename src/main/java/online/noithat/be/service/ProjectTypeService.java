@@ -19,7 +19,7 @@ public class ProjectTypeService {
 
     public ProjectType createProjectType(ProjectTypeRequestDTO projectTypeRequestDTO){
         ProjectType projectType = new ProjectType();
-        projectType.setName(projectTypeRequestDTO.getName());
+
         projectType.setType(projectTypeRequestDTO.getType());
         List<Resource> resources = new ArrayList<>();
         for (ResourceDTO resourceDTO : projectTypeRequestDTO.getResourceDTOList()){
@@ -52,7 +52,7 @@ public class ProjectTypeService {
 
     public ProjectType update(long id, ProjectTypeRequestDTO projectTypeRequestDTO){
         ProjectType projectType = projectTypeRepository.findProjectTypeById(id);
-        projectType.setName(projectTypeRequestDTO.getName());
+
         projectType.setType(projectTypeRequestDTO.getType());
         List<Resource> resources = new ArrayList<>();
         for (ResourceDTO resourceDTO : projectTypeRequestDTO.getResourceDTOList()) {

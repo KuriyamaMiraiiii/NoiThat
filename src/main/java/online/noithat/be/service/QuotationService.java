@@ -106,7 +106,7 @@ public class QuotationService {
     public Quotation rejectQuotation(QuotationRejectDTO quotationRejectDTO) {
         Quotation quotation = quotationRepository.findQuotationById(quotationRejectDTO.getQuotationId());
         quotation.setType(QuotationType.REJECTED);
-        quotation.setReasonReject(quotation.getReasonReject());
+        quotation.setReasonReject(quotationRejectDTO.getReasonReject());
         return quotationRepository.save(quotation);
     }
 
@@ -143,8 +143,11 @@ public class QuotationService {
         for (QuotationDetail quotationDetail : quotation.getQuotationDetails()) {
             Row row = sheet.createRow(rowNum++);
             float totalPrice = quotationDetail.getLength() * quotationDetail.getWidth() * quotationDetail.getPricePerUnit() * quotationDetail.getQuantity();
-            if (quotationDetail.getProduct() != null)
+            if (quotationDetail.getProduct() != null) {
                 row.createCell(0).setCellValue(quotationDetail.getProduct().getName());
+            } else {
+                row.createCell(0).setCellValue(quotationDetail.getProductDetail().getName());
+            }
             row.createCell(1).setCellValue(quotationDetail.getLength());
             row.createCell(2).setCellValue(quotationDetail.getWidth());
             row.createCell(3).setCellValue(quotationDetail.getHeight());
@@ -152,7 +155,12 @@ public class QuotationService {
             row.createCell(5).setCellValue(quotationDetail.getLength() * quotationDetail.getWidth());
             row.createCell(6).setCellValue(quotationDetail.getQuantity());
             row.createCell(7).setCellValue(formatAmount((int) quotationDetail.getPricePerUnit()));
-            row.createCell(8).setCellValue(formatAmount((int) totalPrice));
+            if (quotationDetail.getProduct() != null) {
+                row.createCell(8).setCellValue(formatAmount((int) totalPrice));
+            }else {
+                totalPrice = quotationDetail.getProductDetail().getPrice() * quotationDetail.getQuantity();
+                row.createCell(8).setCellValue(formatAmount((int) totalPrice));
+            }
         }
 
         // Set response headers
@@ -197,8 +205,15 @@ public class QuotationService {
             QuotationDetail quotationDetail = new QuotationDetail();
             ProductDetail productDetail = productDetailRepository.findProductDetailById(quotationDetailDTO.getProductDetailId());
             quotationDetail.setProductDetail(productDetail);
-            quotationDetail.setTotal(productDetail.getPrice());
+            quotationDetail.setTotal((productDetail.getPrice() * quotationDetailDTO.getQuantity()));
             quotationDetail.setQuotation(quotation);
+            quotationDetail.setLength(quotationDetailDTO.getLength());
+            quotationDetail.setWidth(quotationDetailDTO.getWidth());
+            quotationDetail.setWeight(quotationDetailDTO.getWeight());
+            quotationDetail.setHeight(quotationDetailDTO.getHeight());
+            quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
+            quotationDetail.setPricePerUnit(productDetail.getPrice());
+            quotationDetail.setUnit(productDetail.getProduct().getUnit());
             quotationDetails.add(quotationDetail);
         }
 

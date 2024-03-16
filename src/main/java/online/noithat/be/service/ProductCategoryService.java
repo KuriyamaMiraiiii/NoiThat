@@ -19,6 +19,7 @@ public class ProductCategoryService {
 
 //        product.setProductId(product.getProductId());
         category.setName(category.getName());
+        category.setDeleted(false);
 
         return productCategoryRepository.save(category);
     }

@@ -13,10 +13,16 @@ public class CreateProductDetailResponseDTO {
 
     Long colorId;
 
-
+    String name;
     List<ResourceDTO> resourceDTOS;
 
     long productId;
 
     float price;
+    float length;
+    float width;
+
+    float weight;
+
+    float height;
 }

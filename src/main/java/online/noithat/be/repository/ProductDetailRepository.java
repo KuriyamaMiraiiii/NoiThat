@@ -11,5 +11,5 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, Lo
     List<ProductDetail> findProductDetailsByIdNotNull();
     ProductDetail findProductDetailById(Long id);
 
-//    List<ProductDetail> findProductDetailsByProductContaining(Product product);
+    List<ProductDetail> findProductDetailsByProduct(Product product);
 }

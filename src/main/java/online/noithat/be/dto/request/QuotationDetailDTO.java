@@ -8,7 +8,6 @@ public class QuotationDetailDTO {
     long productDetailId;
     long productId;
     long quantity;
-
     float height;
     float length;
     float width;
