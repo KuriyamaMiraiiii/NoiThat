@@ -9,6 +9,7 @@ import online.noithat.be.dto.request.QuotationRequestDTO;
 import online.noithat.be.dto.response.CreateRequestDTO;
 import online.noithat.be.enums.QuotationType;
 import online.noithat.be.enums.RequestType;
+import online.noithat.be.enums.Unit;
 import online.noithat.be.repository.ProductDetailRepository;
 import online.noithat.be.repository.ProductRepository;
 import online.noithat.be.repository.QuotationRepository;
@@ -142,8 +143,14 @@ public class QuotationService {
         int rowNum = 1;
         for (QuotationDetail quotationDetail : quotation.getQuotationDetails()) {
             Row row = sheet.createRow(rowNum++);
-            float totalPrice = quotationDetail.getLength() * quotationDetail.getWidth() * quotationDetail.getPricePerUnit() * quotationDetail.getQuantity();
-            if (quotationDetail.getProduct() != null) {
+            float totalPrice = 0;
+            if(quotationDetail.getUnit() == Unit.ITEM){
+                totalPrice = quotationDetail.getWeight() * quotationDetail.getQuantity() * quotationDetail.getPricePerUnit();
+            }else if(quotationDetail.getUnit() == Unit.METER){
+                totalPrice = quotationDetail.getLength()/1000 * quotationDetail.getQuantity() * quotationDetail.getPricePerUnit();
+            }else if(quotationDetail.getUnit() == Unit.SQUARE_METER){
+                totalPrice = quotationDetail.getLength()/1000 * quotationDetail.getWidth()/1000 * quotationDetail.getQuantity() * quotationDetail.getPricePerUnit();            }
+            if (quotationDetail.getProduct() != null){
                 row.createCell(0).setCellValue(quotationDetail.getProduct().getName());
             } else {
                 row.createCell(0).setCellValue(quotationDetail.getProductDetail().getName());
@@ -151,8 +158,15 @@ public class QuotationService {
             row.createCell(1).setCellValue(quotationDetail.getLength());
             row.createCell(2).setCellValue(quotationDetail.getWidth());
             row.createCell(3).setCellValue(quotationDetail.getHeight());
-            if (quotationDetail.getUnit() != null) row.createCell(4).setCellValue(quotationDetail.getUnit().toString());
-            row.createCell(5).setCellValue(quotationDetail.getLength() * quotationDetail.getWidth());
+            if (quotationDetail.getUnit() != null)
+                row.createCell(4).setCellValue(quotationDetail.getUnit().toString());
+            if(quotationDetail.getUnit() == Unit.ITEM){
+                row.createCell(5).setCellValue(1);
+            }else if(quotationDetail.getUnit() == Unit.METER){
+                row.createCell(5).setCellValue(quotationDetail.getLength()/1000);
+            }else if(quotationDetail.getUnit() == Unit.SQUARE_METER){
+                row.createCell(5).setCellValue(quotationDetail.getLength()/1000 * quotationDetail.getWidth()/1000);
+            }
             row.createCell(6).setCellValue(quotationDetail.getQuantity());
             row.createCell(7).setCellValue(formatAmount((int) quotationDetail.getPricePerUnit()));
             if (quotationDetail.getProduct() != null) {
@@ -207,13 +221,12 @@ public class QuotationService {
             quotationDetail.setProductDetail(productDetail);
             quotationDetail.setTotal((productDetail.getPrice() * quotationDetailDTO.getQuantity()));
             quotationDetail.setQuotation(quotation);
+            quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
+            quotationDetail.setHeight(quotationDetail.getHeight());
             quotationDetail.setLength(quotationDetailDTO.getLength());
             quotationDetail.setWidth(quotationDetailDTO.getWidth());
-            quotationDetail.setWeight(quotationDetailDTO.getWeight());
-            quotationDetail.setHeight(quotationDetailDTO.getHeight());
-            quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
-            quotationDetail.setPricePerUnit(productDetail.getPrice());
-            quotationDetail.setUnit(productDetail.getProduct().getUnit());
+            quotationDetail.setUnit(quotationDetailDTO.getUnit());
+            quotationDetail.setPricePerUnit(quotationDetailDTO.getPricePerUnit());
             quotationDetails.add(quotationDetail);
         }
 

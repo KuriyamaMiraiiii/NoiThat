@@ -14,7 +14,6 @@ public class ProjectType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-
     boolean isDeleted = false;
     @Enumerated(EnumType.STRING)
     ProjectEnumType type;
@@ -33,5 +32,7 @@ public class ProjectType {
     @JsonIgnore
     List<Resource>resources;
 
-
+    @OneToMany(mappedBy = "projectType",cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<Template>templates;
 }

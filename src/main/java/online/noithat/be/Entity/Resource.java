@@ -32,6 +32,11 @@ public class Resource {
     BlogSection blogSection;
 
     @ManyToOne
+    @JoinColumn(name = "template_id")
+    @JsonIgnore
+    TemplateSection templateSection;
+
+    @ManyToOne
     @JoinColumn(name = "product_detail_id")
             @JsonIgnore
     ProductDetail productDetail;
@@ -45,4 +50,6 @@ public class Resource {
     @JoinColumn(name = "project_type_id")
     @JsonIgnore
     ProjectType projectType;
+
+
 }

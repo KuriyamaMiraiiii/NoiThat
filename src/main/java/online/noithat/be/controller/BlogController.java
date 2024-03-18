@@ -25,7 +25,7 @@ public class BlogController {
     }
 
     @GetMapping("/blog/{id}")
-    public ResponseEntity getAllBlog(@PathVariable long id) {
+    public ResponseEntity getBlogById(@PathVariable long id) {
         Blog blog = blogService.getBlogDetail(id);
         return ResponseEntity.ok(blog);
     }

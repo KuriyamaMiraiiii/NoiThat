@@ -9,9 +9,9 @@ import online.noithat.be.enums.ProjectEnumType;
 import java.util.List;
 @Data
 public class ProjectTypeRequestDTO {
-    String name;
+    long id;
     @Enumerated(EnumType.STRING)
     ProjectEnumType type;
     List<ResourceDTO> resourceDTOList;
-    List<Category> categoryList;
+    List<Long> categoriesId;
 }

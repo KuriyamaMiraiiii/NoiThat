@@ -53,4 +53,9 @@ public class ProductDetail {
     @OneToMany(mappedBy = "productDetail", cascade = CascadeType.ALL)
     @JsonIgnore
     List<QuotationDetail> quotationDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "template_id")
+    @JsonIgnore
+    Template template;
 }

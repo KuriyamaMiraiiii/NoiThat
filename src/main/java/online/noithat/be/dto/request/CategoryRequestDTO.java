@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class CategoryRequestDTO {
+    long id;
     String name;
     List<ProjectTypeRequestDTO> projectTypeRequestDTOS;
 }

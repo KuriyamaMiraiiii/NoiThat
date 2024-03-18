@@ -3,8 +3,10 @@ package online.noithat.be.service;
 import online.noithat.be.Entity.Category;
 import online.noithat.be.Entity.ProjectType;
 import online.noithat.be.Entity.Resource;
+import online.noithat.be.dto.request.CategoryRequestDTO;
 import online.noithat.be.dto.request.ProjectTypeRequestDTO;
 import online.noithat.be.dto.request.ResourceDTO;
+import online.noithat.be.repository.ProductCategoryRepository;
 import online.noithat.be.repository.ProjectTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +19,10 @@ public class ProjectTypeService {
     @Autowired
     ProjectTypeRepository projectTypeRepository;
 
+    @Autowired
+    ProductCategoryRepository productCategoryRepository;
     public ProjectType createProjectType(ProjectTypeRequestDTO projectTypeRequestDTO){
         ProjectType projectType = new ProjectType();
-
         projectType.setType(projectTypeRequestDTO.getType());
         List<Resource> resources = new ArrayList<>();
         for (ResourceDTO resourceDTO : projectTypeRequestDTO.getResourceDTOList()){
@@ -29,14 +32,22 @@ public class ProjectTypeService {
             resource.setProjectType(projectType);
             resources.add(resource);
         }
+
         List<Category> categoryList = new ArrayList<>();
-        for(Category category : projectTypeRequestDTO.getCategoryList()){
-            category.setName(category.getName());
+        for(Long categoryId : projectTypeRequestDTO.getCategoriesId()){
+            Category category = productCategoryRepository.findProductCategoryById(categoryId);
+            category.getProjectTypes().add(projectType);
             categoryList.add(category);
         }
+
         projectType.setCategoryList(categoryList);
         projectType.setResources((resources));
-        return projectTypeRepository.save(projectType);
+        try{
+            return projectTypeRepository.save(projectType);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public List<ProjectType> getAllProjectTypes(){
@@ -52,7 +63,6 @@ public class ProjectTypeService {
 
     public ProjectType update(long id, ProjectTypeRequestDTO projectTypeRequestDTO){
         ProjectType projectType = projectTypeRepository.findProjectTypeById(id);
-
         projectType.setType(projectTypeRequestDTO.getType());
         List<Resource> resources = new ArrayList<>();
         for (ResourceDTO resourceDTO : projectTypeRequestDTO.getResourceDTOList()) {
@@ -63,8 +73,9 @@ public class ProjectTypeService {
             resources.add(resource);
         }
         List<Category> categoryList = new ArrayList<>();
-        for(Category category : projectTypeRequestDTO.getCategoryList()){
-            category.setName(category.getName());
+        for(Long categoryId : projectTypeRequestDTO.getCategoriesId()){
+            Category category = productCategoryRepository.findProductCategoryById(categoryId);
+            category.getProjectTypes().add(projectType);
             categoryList.add(category);
         }
         projectType.setCategoryList(categoryList);

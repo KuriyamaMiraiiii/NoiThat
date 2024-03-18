@@ -20,9 +20,9 @@ public class Category {
     List<Product> products;
     boolean isDeleted = false;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "projectType",
+            name = "projectTypeCategory",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "project_type_id"))
     List<ProjectType> projectTypes;
