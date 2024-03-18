@@ -29,6 +29,7 @@ import java.util.List;
 @Service
 public class AuthenticationService {
 
+    private final String roleAdmin = "ADMIN";
     @Autowired
     AccountRepository accountRepository;
     @Autowired
