@@ -23,6 +23,7 @@ import java.util.List;
 @Service
 public class AuthenticationService {
 
+    private final String roleAdmin = "ADMIN";
     @Autowired
     AccountRepository accountRepository;
     @Autowired
@@ -91,12 +92,12 @@ public class AuthenticationService {
 
 //    public Account registerStaff(RegisterRequestDTO registerRequestDTO){
 //        Account account = new Account();
-//        account.setEmail(registerRequestDTO.getEmail());
-//        account.setUsername(registerRequestDTO.getUsername());
-//        String rawPassword = registerRequestDTO.getPassword();
-//        account.setPassword(passwordEncoder.encode(rawPassword));
-//        account.setPhone(registerRequestDTO.getPhone());
-//        account.setAddress(registerRequestDTO.getAddress());
+//        account = accountRepository.findAccountByRole(registerRequestDTO.getRole());
+//        if(account == null){
+//            throw new AccountNotFound("Cannot find by email");
+//        }else {
+//            account.setEmail(registerRequestDTO.getEmail());
+//        }
 //        account.setRole(registerRequestDTO.getRole());
 //        // save to database
 //        return accountRepository.save(account);
