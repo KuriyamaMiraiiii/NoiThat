@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import online.noithat.be.enums.BlogStatus;
 
 import java.util.Date;
 import java.util.List;
@@ -18,10 +19,13 @@ public class Blog {
     String blogName;
     Date datePost;
     boolean isDeleted = false;
+//    BlogStatus status = BlogStatus.INACTIVE;
+
+    @Column(nullable = true)
+    String thumbnail;
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    @JsonIgnore
-    List<Resource> resources;
+    List<BlogSection> blogSections;
 
     @ManyToOne
     @JoinColumn(name = "account_id")

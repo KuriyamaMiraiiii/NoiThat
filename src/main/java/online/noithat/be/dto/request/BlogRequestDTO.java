@@ -10,5 +10,6 @@ import java.util.List;
 public class BlogRequestDTO {
     String blogName;
     Date datePost;
-    List<ResourceDTO> resourceDTO;
+    String thumbnail;
+    List<BlogSectionRequestDTO> blogSectionRequestDTOS;
 }
