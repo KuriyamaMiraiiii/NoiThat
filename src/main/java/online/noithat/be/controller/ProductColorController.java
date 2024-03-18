@@ -39,4 +39,10 @@ public class ProductColorController {
     public ResponseEntity update(@PathVariable long id, @RequestBody ProductColorRequestDTO productColorRequestDTO){
         return ResponseEntity.ok(productColorService.update(id,productColorRequestDTO.getColor()));
     }
+
+    @GetMapping("/productColors-productId/{id}")
+    public ResponseEntity getProductColorByProductId(@PathVariable long id) {
+        List<ProductColor> productColors = productColorService.getProductColorsByProductId(id);
+        return ResponseEntity.ok(productColors);
+    }
 }

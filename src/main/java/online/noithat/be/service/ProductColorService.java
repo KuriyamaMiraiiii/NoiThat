@@ -31,6 +31,13 @@ public class ProductColorService {
         return productColors;
     }
 
+    public List<ProductColor> getProductColorsByProductId(long id){
+        Product product = productRepository.findProductById(id);
+
+        List<ProductColor> productColors = productColorRepository.findProductColorsByProduct(product);
+        return  productColors;
+    }
+
     public ProductColor delete(long id){
         ProductColor color = productColorRepository.findProductColorById(id);
         color.setDeleted(true);

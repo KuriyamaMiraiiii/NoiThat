@@ -2,6 +2,7 @@ package online.noithat.be.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
+import online.noithat.be.Entity.ProductColor;
 import online.noithat.be.Entity.ProductMaterial;
 import online.noithat.be.dto.request.ProductColorRequestDTO;
 import online.noithat.be.dto.request.ProductMaterialRequestDTO;
@@ -19,9 +20,9 @@ public class ProductMaterialController {
     @Autowired
     ProductMaterialService productMaterialService;
 
-    @PostMapping("/productMaterial")
-    public ResponseEntity createProductMaterial(@RequestBody ProductMaterial productMaterial) {
-        ProductMaterial createdProductMaterial = productMaterialService.createProductMaterial(productMaterial);
+    @PostMapping("/productMaterial/{id}")
+    public ResponseEntity createProductMaterial(@RequestBody ProductMaterialRequestDTO productMaterialRequestDTO, @PathVariable long id) {
+        ProductMaterial createdProductMaterial = productMaterialService.createProductMaterial(productMaterialRequestDTO, id);
         return ResponseEntity.ok(createdProductMaterial);
     }
 
@@ -38,5 +39,11 @@ public class ProductMaterialController {
     @PutMapping("/productMaterial/{id}")
     public ResponseEntity update(@PathVariable long id, @RequestBody ProductMaterialRequestDTO productMaterialRequestDTO){
         return ResponseEntity.ok(productMaterialService.update(id, productMaterialRequestDTO.getSize()));
+    }
+
+    @GetMapping("/productMaterial-productId/{id}")
+    public ResponseEntity getProductMaterialByProductId(@PathVariable long id) {
+        List<ProductMaterial> productMaterials = productMaterialService.getProductMaterialByProductId(id);
+        return ResponseEntity.ok(productMaterials);
     }
 }

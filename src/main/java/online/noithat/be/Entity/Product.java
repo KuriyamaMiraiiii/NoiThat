@@ -42,6 +42,9 @@ public class Product {
     List<ProductColor> productColors;
 
     @OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
+    List<ProductMaterial> productMaterials;
+
+    @OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
     @JsonIgnore
     List<QuotationDetail> quotationDetails;
 

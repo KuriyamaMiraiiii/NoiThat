@@ -20,4 +20,9 @@ public class ProductMaterial {
     @OneToMany(mappedBy = "material",cascade = CascadeType.ALL)
     @JsonIgnore
     List<ProductDetail> productDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    @JsonIgnore
+    Product product;
 }

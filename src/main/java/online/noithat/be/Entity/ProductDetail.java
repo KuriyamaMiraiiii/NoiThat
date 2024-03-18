@@ -15,7 +15,6 @@ public class ProductDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     @OneToMany(mappedBy = "productDetail", cascade = CascadeType.ALL)
-    @JsonIgnore
     List<Resource> resources;
     float price;
 

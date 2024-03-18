@@ -33,6 +33,7 @@ public class Resource {
 
     @ManyToOne
     @JoinColumn(name = "product_detail_id")
+            @JsonIgnore
     ProductDetail productDetail;
 
     @ManyToOne
