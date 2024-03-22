@@ -22,6 +22,7 @@ public class ProjectType {
     List<Category> categoryList;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "template_product_detail",
             joinColumns = @JoinColumn(name = "project_type_id"),

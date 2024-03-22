@@ -21,6 +21,7 @@ public class Category {
     boolean isDeleted = false;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(
             name = "projectTypeCategory",
             joinColumns = @JoinColumn(name = "category_id"),
