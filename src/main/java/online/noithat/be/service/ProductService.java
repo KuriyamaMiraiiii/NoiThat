@@ -8,6 +8,7 @@ import online.noithat.be.dto.CreateProductRequestDTO;
 
 import online.noithat.be.dto.request.ResourceDTO;
 import online.noithat.be.dto.response.ProductResponseDTO;
+import online.noithat.be.enums.Unit;
 import online.noithat.be.repository.ProductCategoryRepository;
 import online.noithat.be.repository.ProductDetailRepository;
 import online.noithat.be.repository.ProductRepository;
@@ -38,10 +39,19 @@ public class ProductService {
 //        product.setProductColors(createProductRequestDTO.getProductColors());
 //        product.setPricePerAmount(createProductRequestDTO.getPricePerAmount());
         product.setPricePerUnit(createProductRequestDTO.getPricePerUnit());
-        product.setUnit(createProductRequestDTO.getUnit());
+
         product.setLength(createProductRequestDTO.getLength());
         product.setWidth(createProductRequestDTO.getWidth());
         product.setHeight(createProductRequestDTO.getHeight());
+        product.setUnit(createProductRequestDTO.getUnit());
+        if(createProductRequestDTO.getUnit() == Unit.ITEM){
+            product.setWeight(1);
+        }else if(createProductRequestDTO.getUnit() == Unit.METER){
+            product.setWeight(createProductRequestDTO.getLength());
+        } else if (createProductRequestDTO.getUnit() == Unit.SQUARE_METER) {
+            product.setWeight(createProductRequestDTO.getLength() * createProductRequestDTO.getWidth());
+        }
+
         List<Resource> resources = new ArrayList<>();
         // ResourceDTO => Resource
         for (ResourceDTO resourceDTO : createProductRequestDTO.getResourceDTOS()) {
@@ -81,7 +91,14 @@ public class ProductService {
         product.setName(createProductRequestDTO.getName());
         product.setPricePerUnit(createProductRequestDTO.getPricePerUnit());
         product.setProductColors(createProductRequestDTO.getProductColors());
-        product.setPricePerAmount(createProductRequestDTO.getPricePerAmount());
+        product.setUnit(createProductRequestDTO.getUnit());
+        if(createProductRequestDTO.getUnit() == Unit.ITEM){
+            product.setWeight(1);
+        }else if(createProductRequestDTO.getUnit() == Unit.METER){
+            product.setWeight(createProductRequestDTO.getLength());
+        } else if (createProductRequestDTO.getUnit() == Unit.SQUARE_METER) {
+            product.setWeight(createProductRequestDTO.getLength() * createProductRequestDTO.getWidth());
+        }
         List<Resource> resources = new ArrayList<>();
         // ResourceDTO => Resource
         for (ResourceDTO resourceDTO : createProductRequestDTO.getResourceDTOS()) {

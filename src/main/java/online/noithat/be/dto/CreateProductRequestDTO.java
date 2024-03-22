@@ -15,7 +15,7 @@ public class CreateProductRequestDTO {
     Unit unit;
 
     float pricePerUnit;
-    float pricePerAmount;
+    float weight;
     float length = 0;
     float width = 0;
     float height = 0;

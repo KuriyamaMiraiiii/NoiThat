@@ -19,7 +19,8 @@ public class Product {
     Unit unit;
 
     float pricePerUnit;
-    float pricePerAmount;
+    @Column(nullable = true)
+    float weight;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     List<Resource> resources;
