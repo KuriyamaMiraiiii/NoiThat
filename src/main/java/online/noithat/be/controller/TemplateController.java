@@ -44,4 +44,10 @@ public class TemplateController {
     {
         return ResponseEntity.ok(templateService.update(id, templateDTO));
     }
+
+    @GetMapping("/template/{id}")
+    public ResponseEntity getTemplateByProjectTypeId(@PathVariable long id){
+        List<Template> templates = templateService.getTemplatesByProjectTypeId(id);
+        return ResponseEntity.ok(templates);
+    }
 }

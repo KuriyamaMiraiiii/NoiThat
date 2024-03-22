@@ -75,4 +75,10 @@ public class TemplateService {
         template.setDatePost(templateDTO.getDatePost());
         return templateRepository.save(template);
     }
+
+    public List<Template> getTemplatesByProjectTypeId(Long projectTypeId){
+        ProjectType projectType = projectTypeRepository.findProjectTypeById(projectTypeId);
+        List<Template> templates = templateRepository.findTemplatesByProjectTypesContaining(projectType);
+        return templates;
+    }
 }
