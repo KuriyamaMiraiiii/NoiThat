@@ -2,6 +2,7 @@ package online.noithat.be.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import online.noithat.be.Entity.Account;
+
 import online.noithat.be.dto.LoginRequestDTO;
 import online.noithat.be.dto.RegisterRequestDTO;
 import online.noithat.be.dto.request.LoginGoogleDTO;
@@ -54,5 +55,11 @@ public class AuthenticationController {
     @DeleteMapping("/authentication/delete-account/{id}")
     public ResponseEntity delete(@PathVariable long id) {
         return ResponseEntity.ok(authenticationService.delete(id));
+    }
+
+    @GetMapping("/authentication/account/{id}")
+    public ResponseEntity getAccountById(@PathVariable long id){
+        Account accounts = authenticationService.getAccountById(id);
+        return ResponseEntity.ok(accounts);
     }
 }

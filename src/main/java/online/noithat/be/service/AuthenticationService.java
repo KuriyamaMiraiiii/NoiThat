@@ -115,5 +115,8 @@ public class AuthenticationService {
         account.setStatus(Status.BLOCK);
         return accountRepository.save(account);
     }
-
+    public Account getAccountById(long id){
+        Account account = accountRepository.findAccountById(id);
+        return accountRepository.save(account);
+    }
 }
