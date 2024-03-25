@@ -129,7 +129,7 @@ public class ProductService {
             productResponseDTO.setLength(product.getLength());
             productResponseDTO.setWidth(product.getWidth());
             productResponseDTO.setHeight(product.getHeight());
-            productResponseDTO.setWeight(0);
+            productResponseDTO.setWeight(product.getWeight());
             productResponseDTO.setUnit(product.getUnit());
 
             productResponseDTO.setPricePerUnit(product.getPricePerUnit());
