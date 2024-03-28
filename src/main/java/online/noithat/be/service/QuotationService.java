@@ -70,12 +70,13 @@ public class QuotationService {
             quotationDetail.setProductDetail(productDetail);
             quotationDetail.setQuotation(quotation);
             quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
-            quotationDetail.setHeight(quotationDetail.getHeight());
+            quotationDetail.setHeight(quotationDetailDTO.getHeight());
             quotationDetail.setLength(quotationDetailDTO.getLength());
             quotationDetail.setWidth(quotationDetailDTO.getWidth());
             quotationDetail.setPricePerUnit(quotationDetailDTO.getPricePerUnit());
             quotationDetail.setTotal(quotationDetailDTO.getTotal());
             quotationDetail.setUnit(quotationDetailDTO.getUnit());
+            quotationDetail.setWeight(quotationDetailDTO.getWeight());
             if (quotationDetailDTO.getProductId() != 0) {
                 Product product = productRepository.findProductById(quotationDetailDTO.getProductId());
                 product.getQuotationDetails().add(quotationDetail);
