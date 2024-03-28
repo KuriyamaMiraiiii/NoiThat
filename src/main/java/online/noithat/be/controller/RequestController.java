@@ -17,9 +17,9 @@ import java.util.List;
 @CrossOrigin("*")
 @SecurityRequirement(name = "api")
 public class RequestController {
-
     @Autowired
     RequestService requestService;
+
     @GetMapping("/request")
     public ResponseEntity getAllRequest() {
         List<Request> requests = requestService.getAllRequest();

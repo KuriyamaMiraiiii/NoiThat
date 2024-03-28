@@ -5,6 +5,7 @@ import lombok.Data;
 import online.noithat.be.Entity.ProductDetail;
 import online.noithat.be.Entity.ProjectType;
 import online.noithat.be.Entity.TemplateSection;
+import online.noithat.be.dto.response.CreateProductDetailResponseDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,5 @@ public class TemplateDTO {
     String thumbnail;
     Date datePost;
     List<TemplateSectionDTO> templateSectionDTOS;
-    List<ProductDetail> productDetails;
-
+    List<CreateProductDetailResponseDTO> createProductDetailResponseDTOS;
 }

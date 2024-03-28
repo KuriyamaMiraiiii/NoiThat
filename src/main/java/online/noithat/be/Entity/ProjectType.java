@@ -36,4 +36,6 @@ public class ProjectType {
     @OneToMany(mappedBy = "projectType",cascade = CascadeType.ALL)
     @JsonIgnore
     List<Template>templates;
+
+
 }

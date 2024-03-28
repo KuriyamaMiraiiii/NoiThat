@@ -1,12 +1,11 @@
 package online.noithat.be.service;
 
-import online.noithat.be.Entity.ProjectType;
-import online.noithat.be.Entity.Resource;
-import online.noithat.be.Entity.Template;
-import online.noithat.be.Entity.TemplateSection;
+import online.noithat.be.Entity.*;
 import online.noithat.be.dto.request.ResourceDTO;
 import online.noithat.be.dto.request.TemplateDTO;
 import online.noithat.be.dto.request.TemplateSectionDTO;
+import online.noithat.be.dto.response.CreateProductDetailResponseDTO;
+import online.noithat.be.repository.ProductDetailRepository;
 import online.noithat.be.repository.ProjectTypeRepository;
 import online.noithat.be.repository.TemplateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,8 @@ public class TemplateService {
     TemplateRepository templateRepository;
     @Autowired
     ProjectTypeRepository projectTypeRepository;
-
+    @Autowired
+    ProductDetailRepository productDetailRepository;
     public List<Template> getAllTemplate(){
         List<Template> templates = templateRepository.findTemplatesByIdNotNull();
         return templates;
@@ -39,7 +39,8 @@ public class TemplateService {
         template.setDatePost(templateDTO.getDatePost());
         template.setName(templateDTO.getName());
         template.setProjectType(projectType);
-        template.setThumbnail(templateDTO.getThumbnail());
+        List<ProductDetail> productDetails = new ArrayList<>();
+        template.setProductDetails(productDetails);
         for (TemplateSectionDTO templateSectionDTO : templateDTO.getTemplateSectionDTOS()){
             TemplateSection templateSection = new TemplateSection();
             templateSection.setTemplate(template);
@@ -61,6 +62,7 @@ public class TemplateService {
         }catch (Exception e){
             e.printStackTrace();
         }
+
         return null;
     }
 
