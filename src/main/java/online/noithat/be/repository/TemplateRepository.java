@@ -10,5 +10,5 @@ import java.util.List;
 public interface TemplateRepository extends JpaRepository<Template, Long> {
     List<Template> findTemplatesByIdNotNull();
     Template findTemplateById(long id);
-    List<Template> findTemplatesByProjectTypesContaining(ProjectType projectType);
+    List<Template> findTemplatesByProjectType(ProjectType projectType);
 }

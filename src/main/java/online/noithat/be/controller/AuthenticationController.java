@@ -40,7 +40,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(newAccount);
     }
 
-    @GetMapping("/authentication/account")
+    @GetMapping("/authentication/accounts")
     public ResponseEntity getAllAccount(){
         List<Account> accounts = authenticationService.getAllAccount();
         return ResponseEntity.ok(accounts);
@@ -57,9 +57,9 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.delete(id));
     }
 
-    @GetMapping("/authentication/account/{id}")
-    public ResponseEntity getAccountById(@PathVariable long id){
-        Account accounts = authenticationService.getAccountById(id);
+    @GetMapping("/authentication/account")
+    public ResponseEntity getAccountById(){
+        Account accounts = authenticationService.getAccountByToken();
         return ResponseEntity.ok(accounts);
     }
 }

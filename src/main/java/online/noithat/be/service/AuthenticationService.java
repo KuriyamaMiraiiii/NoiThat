@@ -17,6 +17,7 @@ import online.noithat.be.enums.Status;
 import online.noithat.be.exception.AccountNotFound;
 import online.noithat.be.repository.AccountRepository;
 import online.noithat.be.security.TokenHandler;
+import online.noithat.be.utils.AccountUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,6 +39,9 @@ public class AuthenticationService {
     AuthenticationManager authenticationManager;
 
     @Autowired
+    AccountUtils accountUtils;
+
+    @Autowired
     TokenHandler tokenHandler;
     public Account register(RegisterRequestDTO registerRequestDTO){
         Account account = new Account();
@@ -48,6 +52,7 @@ public class AuthenticationService {
         account.setPhone(registerRequestDTO.getPhone());
         account.setAddress(registerRequestDTO.getAddress());
         account.setRole(Role.CUSTOMER);
+        account.setStatus(Status.UNBLOCK);
         // save to database
         return accountRepository.save(account);
     }
@@ -62,6 +67,7 @@ public class AuthenticationService {
             loginResponse.setEmail(loginAccount.getEmail());
             loginResponse.setUsername(loginAccount.getUsername());
             loginResponse.setRole(loginAccount.getRole());
+            loginResponse.setStatus(loginAccount.getStatus());
             loginResponse.setToken(tokenHandler.generateToken(loginAccount));
 
             return loginResponse;
@@ -106,6 +112,7 @@ public class AuthenticationService {
         account.setPhone(registerRequestDTO.getPhone());
         account.setAddress(registerRequestDTO.getAddress());
         account.setRole(Role.STAFF);
+        account.setStatus(Status.UNBLOCK);
         // save to database
         return accountRepository.save(account);
     }
@@ -115,8 +122,7 @@ public class AuthenticationService {
         account.setStatus(Status.BLOCK);
         return accountRepository.save(account);
     }
-    public Account getAccountById(long id){
-        Account account = accountRepository.findAccountById(id);
-        return accountRepository.save(account);
+    public Account getAccountByToken(){
+        return accountUtils.getCurrentAccount();
     }
 }

@@ -47,9 +47,9 @@ public class ProductService {
         if(createProductRequestDTO.getUnit() == Unit.ITEM){
             product.setWeight(1);
         }else if(createProductRequestDTO.getUnit() == Unit.METER){
-            product.setWeight(createProductRequestDTO.getLength());
+            product.setWeight(createProductRequestDTO.getLength()/1000);
         } else if (createProductRequestDTO.getUnit() == Unit.SQUARE_METER) {
-            product.setWeight(createProductRequestDTO.getLength() * createProductRequestDTO.getWidth());
+            product.setWeight(createProductRequestDTO.getLength()/1000 * createProductRequestDTO.getWidth()/1000);
         }
 
         List<Resource> resources = new ArrayList<>();

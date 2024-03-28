@@ -39,6 +39,7 @@ public class TemplateService {
         template.setDatePost(templateDTO.getDatePost());
         template.setName(templateDTO.getName());
         template.setProjectType(projectType);
+        template.setThumbnail(templateDTO.getThumbnail());
         for (TemplateSectionDTO templateSectionDTO : templateDTO.getTemplateSectionDTOS()){
             TemplateSection templateSection = new TemplateSection();
             templateSection.setTemplate(template);
@@ -73,12 +74,13 @@ public class TemplateService {
         Template template = templateRepository.findTemplateById(id);
         template.setName(templateDTO.getName());
         template.setDatePost(templateDTO.getDatePost());
+        template.setThumbnail(templateDTO.getThumbnail());
         return templateRepository.save(template);
     }
 
     public List<Template> getTemplatesByProjectTypeId(Long projectTypeId){
         ProjectType projectType = projectTypeRepository.findProjectTypeById(projectTypeId);
-        List<Template> templates = templateRepository.findTemplatesByProjectTypesContaining(projectType);
+        List<Template> templates = templateRepository.findTemplatesByProjectType(projectType);
         return templates;
     }
 }
