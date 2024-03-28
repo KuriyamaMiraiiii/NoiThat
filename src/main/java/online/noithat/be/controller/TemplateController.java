@@ -24,11 +24,7 @@ public class TemplateController {
         return ResponseEntity.ok(createTemplate);
     }
 
-    @GetMapping("/template/{id}")
-    public ResponseEntity getTemplateById(@PathVariable long id){
-        Template template = templateService.getTemplateById(id);
-        return ResponseEntity.ok(template);
-    }
+
 
     @GetMapping("/template")
     public ResponseEntity getAllTemplate(){
