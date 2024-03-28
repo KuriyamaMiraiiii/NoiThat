@@ -53,6 +53,7 @@ public class AuthenticationService {
         account.setAddress(registerRequestDTO.getAddress());
         account.setRole(Role.CUSTOMER);
         account.setStatus(Status.UNBLOCK);
+        account.setName(registerRequestDTO.getName());
         // save to database
         return accountRepository.save(account);
     }
@@ -69,6 +70,7 @@ public class AuthenticationService {
             loginResponse.setRole(loginAccount.getRole());
             loginResponse.setStatus(loginAccount.getStatus());
             loginResponse.setToken(tokenHandler.generateToken(loginAccount));
+            loginResponse.setName(loginAccount.getName());
 
             return loginResponse;
             //đăng nhập thành công
@@ -91,6 +93,7 @@ public class AuthenticationService {
             loginResponse.setToken(tokenHandler.generateToken(account));
             loginResponse.setEmail(account.getEmail());
             loginResponse.setRole(account.getRole());
+            loginResponse.setName(account.getName());
             return loginResponse;
         } catch (FirebaseAuthException e) {
             e.printStackTrace();
@@ -111,6 +114,7 @@ public class AuthenticationService {
         account.setPassword(passwordEncoder.encode(rawPassword));
         account.setPhone(registerRequestDTO.getPhone());
         account.setAddress(registerRequestDTO.getAddress());
+        account.setName(registerRequestDTO.getName());
         account.setRole(Role.STAFF);
         account.setStatus(Status.UNBLOCK);
         // save to database
@@ -124,5 +128,17 @@ public class AuthenticationService {
     }
     public Account getAccountByToken(){
         return accountUtils.getCurrentAccount();
+    }
+    public Account Update(RegisterRequestDTO registerRequestDTO,long id){
+        Account account = accountRepository.findAccountById(id);
+        account.setEmail(registerRequestDTO.getEmail());
+        account.setUsername(registerRequestDTO.getUsername());
+
+        account.setPhone(registerRequestDTO.getPhone());
+        account.setAddress(registerRequestDTO.getAddress());
+
+        account.setName(registerRequestDTO.getName());
+        // save to database
+        return accountRepository.save(account);
     }
 }

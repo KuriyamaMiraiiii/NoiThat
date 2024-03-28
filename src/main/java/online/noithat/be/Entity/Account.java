@@ -21,7 +21,7 @@ public class Account implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String username;
-
+    String name;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
 

@@ -11,6 +11,7 @@ public class LoginResponse {
     long id;
     String username;
     String email;
+    String name;
     String token;
     @Enumerated(EnumType.STRING)
     Role role;

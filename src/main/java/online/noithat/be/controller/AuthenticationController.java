@@ -3,6 +3,7 @@ package online.noithat.be.controller;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import online.noithat.be.Entity.Account;
 
+import online.noithat.be.dto.CreateProductRequestDTO;
 import online.noithat.be.dto.LoginRequestDTO;
 import online.noithat.be.dto.RegisterRequestDTO;
 import online.noithat.be.dto.request.LoginGoogleDTO;
@@ -61,5 +62,10 @@ public class AuthenticationController {
     public ResponseEntity getAccountById(){
         Account accounts = authenticationService.getAccountByToken();
         return ResponseEntity.ok(accounts);
+    }
+    @PutMapping("/authentication/account/{id}")
+    public ResponseEntity update(@PathVariable long id, @RequestBody RegisterRequestDTO registerRequestDTO){
+
+        return ResponseEntity.ok(authenticationService.Update(registerRequestDTO,id));
     }
 }

@@ -13,6 +13,7 @@ public class RegisterRequestDTO {
     String email;
     String phone;
     String address;
+    String name;
     @Enumerated(EnumType.STRING)
     Status status;
     @Enumerated(EnumType.STRING)

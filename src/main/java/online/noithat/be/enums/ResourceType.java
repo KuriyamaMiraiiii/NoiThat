@@ -1,6 +1,6 @@
 package online.noithat.be.enums;
 
-public enum ResourceType {
+public enum  ResourceType {
     IMG,
     VIDEO
 }
